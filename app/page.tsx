@@ -6,10 +6,11 @@ import { FinalCta } from '@/components/swira/final-cta'
 import { SiteFooter } from '@/components/swira/site-footer'
 import { ServicesSection } from '@/components/sections/ServicesSection'
 import { WorkBannerSection } from '@/components/sections/WorkBannerSection'
+import { PainSection } from '@/components/sections/PainSection'
 
 export default function Page() {
   return (
-    <><SiteHeader /><main><Hero /><ClientLogos />
+    <><SiteHeader /><main><Hero /><ClientLogos /><PainSection />
       <ServicesSection />
       <WorkBannerSection />
       <Results /><FinalCta /></main><SiteFooter /></>
