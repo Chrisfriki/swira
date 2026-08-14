@@ -27,6 +27,7 @@ export function FinalCta() {
   return (
     <section id="contacto" data-header-theme="dark" className="swira-atmosphere-ink relative z-0 scroll-mt-32 text-white">
       <div
+        role="region"
         aria-label="Las buenas ideas no se quedan quietas. Hagamos que la tuya se mueva."
         className="relative z-0 overflow-hidden border-y border-border bg-white py-5 text-black"
       >

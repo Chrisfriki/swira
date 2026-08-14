@@ -60,7 +60,7 @@ export function Hero() {
         </div>
       </div>
 
-      <motion.a href="#marcas" aria-label="Bajar a las marcas" className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[10px] tracking-[.18em] text-white/60 uppercase" animate={reduceMotion ? undefined : { y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+      <motion.a href="#marcas" aria-label="Scroll: bajar a las marcas" className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[10px] tracking-[.18em] text-white/60 uppercase" animate={reduceMotion ? undefined : { y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
         Scroll <ArrowDown className="size-4" aria-hidden="true" />
       </motion.a>
     </section>
