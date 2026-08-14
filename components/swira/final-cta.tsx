@@ -12,6 +12,16 @@ function TickerLine() {
   )
 }
 
+function TickerGroup() {
+  return (
+    <span className="flex shrink-0">
+      <TickerLine />
+      <TickerLine />
+      <TickerLine />
+    </span>
+  )
+}
+
 export function FinalCta() {
   return (
     <section id="contacto" className="bg-[#0a0a0a] text-white">
@@ -20,8 +30,8 @@ export function FinalCta() {
         className="overflow-hidden border-y border-black/10 bg-white py-5 text-black"
       >
         <div aria-hidden="true" className="flex w-max animate-swira-cta-marquee font-heading text-xl tracking-[-0.02em] uppercase md:text-3xl">
-          <TickerLine />
-          <TickerLine />
+          <TickerGroup />
+          <TickerGroup />
         </div>
       </div>
       <div className="mx-auto max-w-7xl px-6 py-28 md:py-40 lg:px-10">
