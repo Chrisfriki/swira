@@ -19,10 +19,10 @@ export function SiteHeader() {
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>('[data-header-theme]')
+    const sections = document.querySelectorAll<HTMLElement>('[data-theme]')
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-      if (visible) setDark((visible.target as HTMLElement).dataset.headerTheme === 'dark')
+      if (visible) setDark((visible.target as HTMLElement).dataset.theme === 'dark')
     }, { rootMargin: '-24px 0px -85% 0px', threshold: [0, 0.2, 0.6] })
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
@@ -35,7 +35,7 @@ export function SiteHeader() {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6">
-      <div className={cn('pointer-events-auto mx-auto flex h-16 max-w-7xl items-center justify-between rounded-full border px-5 shadow-[0_12px_40px_rgba(5,7,13,.12)] backdrop-blur-xl transition-colors duration-500 md:h-18 md:px-7', dark ? 'border-white/15 bg-[rgba(10,22,40,.6)] text-white' : 'border-white/70 bg-[rgba(255,255,255,.72)] text-ink')}>
+      <div className={cn('pointer-events-auto mx-auto flex h-16 max-w-7xl items-center justify-between rounded-full border px-5 backdrop-blur-xl transition-colors duration-300 md:h-18 md:px-7', dark ? 'border-[rgba(255,255,255,.12)] bg-[rgba(10,22,40,.55)] text-white' : 'border-[rgba(0,0,0,.06)] bg-[rgba(255,255,255,.72)] text-ink')}>
         <Link href="/" className="font-heading text-2xl font-extrabold lowercase tracking-tight">swira<span className="text-brand">.</span></Link>
         <nav aria-label="Navegación principal" className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => <Link key={link.href} href={link.href} className="text-xs font-semibold tracking-[.08em] uppercase transition-colors hover:text-brand">{link.label}</Link>)}

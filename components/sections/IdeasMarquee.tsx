@@ -3,5 +3,5 @@ function MarqueeLine() {
 }
 
 export function IdeasMarquee() {
-  return <aside data-header-theme="dark" aria-label="Estrategia con criterio. Creatividad que se mueve." className="overflow-hidden border-y border-white/10 bg-deep-900 py-6 text-white"><div aria-hidden="true" className="flex w-max animate-swira-marquee-slow font-heading text-2xl tracking-tight md:text-4xl"><span className="flex shrink-0"><MarqueeLine /><MarqueeLine /><MarqueeLine /></span><span className="flex shrink-0"><MarqueeLine /><MarqueeLine /><MarqueeLine /></span></div></aside>
+  return <aside data-theme="dark" aria-label="Estrategia con criterio. Creatividad que se mueve." className="overflow-hidden border-y border-white/10 bg-deep-900 py-6 text-white"><div aria-hidden="true" className="flex w-max animate-swira-marquee-slow font-heading text-2xl tracking-tight md:text-4xl"><span className="flex shrink-0"><MarqueeLine /><MarqueeLine /><MarqueeLine /></span><span className="flex shrink-0"><MarqueeLine /><MarqueeLine /><MarqueeLine /></span></div></aside>
 }

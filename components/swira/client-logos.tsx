@@ -36,7 +36,7 @@ export function ClientLogos() {
   return (
     <section
       id="marcas"
-      data-header-theme="light"
+      data-theme="light"
       aria-label="Marcas que confían en Swira"
       className="scroll-mt-32 border-y border-border bg-paper py-14"
     >

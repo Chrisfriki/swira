@@ -77,7 +77,7 @@ export function Faq() {
   }
 
   return (
-    <section id="faq" data-header-theme="light" className="scroll-mt-32 border-t border-border bg-paper">
+    <section id="faq" data-theme="light" className="border-t border-border bg-paper">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal as="h2">

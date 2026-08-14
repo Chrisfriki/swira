@@ -29,7 +29,7 @@ function Comparison({ before, after, label }: (typeof EXAMPLES)[number]) {
 export function BeforeAfterSection() {
   const [emblaRef] = useEmblaCarousel({ containScroll: 'trimSnaps' })
   return (
-    <section data-header-theme="dark" className="swira-atmosphere scroll-mt-32 overflow-hidden py-24 text-white md:py-32">
+    <section data-theme="dark" className="swira-atmosphere overflow-hidden py-24 text-white md:py-32">
       <div className="px-6 lg:px-10"><SectionLabel className="text-white/60">Antes y después</SectionLabel><h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight"><WordReveal text="El mismo producto. Otra historia." emphasis="historia" /></h2></div>
       <div ref={emblaRef} className="mt-14 overflow-hidden"><div className="flex gap-5 pl-6 lg:pl-10">{EXAMPLES.map((example) => <div key={example.label} className="basis-[92vw] shrink-0 lg:basis-[72vw]"><Comparison {...example} /><p className="mt-4 text-sm text-white/55">{example.label}</p></div>)}<div className="w-4 shrink-0" /></div></div>
     </section>

@@ -31,7 +31,7 @@ export function ServicesSection() {
   }, [])
 
   return (
-    <section id="servicios" data-header-theme="dark" className="swira-atmosphere scroll-mt-32 text-white">
+    <section id="servicios" data-theme="dark" className="swira-atmosphere text-white">
       <div className="px-6 pt-24 md:pt-32 lg:px-10"><SectionLabel className="text-white/60">Lo que hacemos</SectionLabel></div>
       <div className="mx-auto grid max-w-[1600px] gap-12 px-6 pb-24 md:pb-32 lg:grid-cols-[1fr_1fr] lg:px-10">
         <div className="hidden lg:block">

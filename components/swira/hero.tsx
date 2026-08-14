@@ -19,7 +19,7 @@ export function Hero() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section data-header-theme="dark" className="relative min-h-dvh overflow-hidden bg-deep-900 text-white">
+    <section data-theme="dark" className="relative min-h-dvh overflow-hidden bg-deep-900 text-white">
       <video
         aria-label="Vídeo de presentación de Swira pendiente de sustituir"
         className="absolute inset-0 size-full object-cover opacity-40"

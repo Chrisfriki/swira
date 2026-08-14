@@ -54,7 +54,7 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function SiteFooter() {
   return (
-    <footer data-header-theme="dark" className="border-t border-white/10 bg-ink text-white">
+    <footer data-theme="dark" className="border-t border-white/10 bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>

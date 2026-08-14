@@ -19,7 +19,7 @@ export function ProcessSection() {
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24 })
 
   return (
-    <section ref={ref} id="proceso" data-header-theme="light" className="scroll-mt-32 bg-paper px-6 py-24 text-ink md:py-32 lg:px-10">
+    <section ref={ref} id="proceso" data-theme="light" className="bg-paper px-6 py-24 text-ink md:py-32 lg:px-10">
       <SectionLabel>Cómo trabajamos</SectionLabel>
       <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight"><WordReveal text="Sin sorpresas. Paso a paso." emphasis="Paso" /></h2>
       <div className="relative mt-16">

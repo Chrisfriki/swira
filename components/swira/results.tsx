@@ -25,7 +25,7 @@ function AnimatedMetric({ value, prefix, suffix }: { value: number; prefix: stri
 
 export function Results() {
   return (
-    <section data-header-theme="dark" className="swira-atmosphere-ink py-24 text-white md:py-32">
+    <section data-theme="dark" className="swira-atmosphere-ink py-24 text-white md:py-32">
       <div className="px-6 lg:px-10">
         <h2 className="max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight"><WordReveal text="Los números mandan." emphasis="mandan" /></h2>
         <p className="mt-4 text-xs tracking-[.16em] text-white/45 uppercase">Cifras de ejemplo · sustituir por resultados verificados</p>
