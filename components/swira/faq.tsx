@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Reveal } from './reveal'
-import { Mark } from './primitives'
+import { WordReveal } from '@/components/motion/motion-primitives'
 
 const FAQS = [
   {
@@ -77,12 +77,12 @@ export function Faq() {
   }
 
   return (
-    <section id="faq" className="scroll-mt-32 border-t border-border">
+    <section id="faq" data-header-theme="light" className="scroll-mt-32 border-t border-border bg-paper">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal as="h2">
           <span className="font-heading text-4xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-6xl">
-            Dudas <em className="font-extrabold italic"><Mark>razonables</Mark></em>.
+            <WordReveal text="Dudas razonables." emphasis="razonables" />
           </span>
         </Reveal>
 
