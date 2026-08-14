@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -22,6 +22,7 @@ const WORK = [
 ]
 
 export function WorkSection() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true, containScroll: 'trimSnaps', align: 'start' })
   const [progress, setProgress] = useState(0)
   const [cursorVisible, setCursorVisible] = useState(false)
@@ -41,7 +42,7 @@ export function WorkSection() {
   }, [emblaApi, updateProgress])
 
   return (
-    <section id="trabajo" data-header-theme="light" className="relative scroll-mt-32 overflow-hidden bg-paper py-24 text-ink md:py-32">
+    <section ref={sectionRef} id="trabajo" data-theme="light" className="relative isolate overflow-hidden bg-paper py-24 text-ink md:py-32">
       <div className="px-6 lg:px-10">
         <SectionLabel>Trabajo seleccionado</SectionLabel>
         <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight text-balance"><WordReveal text="Ideas bonitas. Resultados todavía mejores." emphasis="mejores" /></h2>
@@ -49,7 +50,12 @@ export function WorkSection() {
       <div
         ref={emblaRef}
         className="mt-14 cursor-grab overflow-hidden active:cursor-grabbing"
-        onPointerMove={(event) => { cursorX.set(event.clientX - 45); cursorY.set(event.clientY - 45) }}
+        onPointerMove={(event) => {
+          const rect = sectionRef.current?.getBoundingClientRect()
+          if (!rect) return
+          cursorX.set(event.clientX - rect.left - 45)
+          cursorY.set(event.clientY - rect.top - 45)
+        }}
         onPointerEnter={() => setCursorVisible(true)}
         onPointerLeave={() => setCursorVisible(false)}
         onWheel={(event) => { if (!emblaApi || Math.abs(event.deltaY) < 4) return; event.deltaY > 0 ? emblaApi.scrollNext() : emblaApi.scrollPrev() }}
@@ -70,7 +76,7 @@ export function WorkSection() {
       </div>
       <div className="mx-6 mt-8 h-0.5 overflow-hidden bg-border lg:mx-10"><motion.div className="h-full origin-left bg-brand" animate={{ scaleX: progress }} transition={{ duration: .1 }} /></div>
       <div className="px-6 pt-10 lg:px-10"><Link href="#contacto" className="font-medium underline decoration-brand decoration-2 underline-offset-4 hover:text-brand">Ver todos los casos →</Link></div>
-      <motion.div aria-hidden="true" className="pointer-events-none fixed z-40 hidden size-[90px] items-center justify-center rounded-full bg-brand text-center text-[10px] font-bold tracking-[.12em] text-ink uppercase mix-blend-difference [@media(pointer:fine)]:flex" style={{ x: cursorX, y: cursorY }} animate={{ opacity: cursorVisible && !reduceMotion ? 1 : 0, scale: cursorVisible ? 1 : .6 }}>Ver caso</motion.div>
+      <motion.div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 z-40 hidden size-[90px] items-center justify-center rounded-full bg-brand text-center text-[10px] font-bold tracking-[.12em] text-ink uppercase mix-blend-difference [@media(pointer:fine)]:flex" style={{ x: cursorX, y: cursorY }} animate={{ opacity: cursorVisible && !reduceMotion ? 1 : 0, scale: cursorVisible ? 1 : .6 }}>Ver caso</motion.div>
     </section>
   )
 }
