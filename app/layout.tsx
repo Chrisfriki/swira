@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Inter } from 'next/font/google'
+import { MotionShell } from '@/components/motion/motion-shell'
 import './globals.css'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
@@ -83,7 +84,7 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, '\\u003c') }} />
-        {children}
+        <MotionShell>{children}</MotionShell>
         {process.env.VERCEL === '1' && <Analytics />}
       </body>
     </html>

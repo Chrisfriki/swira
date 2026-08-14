@@ -45,6 +45,11 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --color-brand: var(--brand);
   --color-surface-dark: var(--surface-dark);
+  --color-ink: var(--ink);
+  --color-deep-900: var(--deep-900);
+  --color-deep-700: var(--deep-700);
+  --color-paper: var(--paper);
+  --color-border-dark: var(--border-dark);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
@@ -52,9 +57,13 @@
 :root {
   color-scheme: light;
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #05070d;
+  --ink: #05070d;
+  --deep-900: #0a1628;
+  --deep-700: #0b2b5c;
+  --paper: #ffffff;
   --brand: #00ce63;
-  --surface-dark: #0a0a0a;
+  --surface-dark: #0a1628;
   --card: #ffffff;
   --card-foreground: #0a0a0a;
   --popover: #ffffff;
@@ -64,11 +73,12 @@
   --secondary: #fafafa;
   --secondary-foreground: #0a0a0a;
   --muted: #fafafa;
-  --muted-foreground: #6b6b6b;
+  --muted-foreground: #6b7280;
   --accent: #fafafa;
   --accent-foreground: #0a0a0a;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e5e5e5;
+  --border: #e5e7eb;
+  --border-dark: rgba(255, 255, 255, 0.1);
   --input: #e5e5e5;
   --ring: #0a0a0a;
   --chart-1: oklch(0.87 0 0);
@@ -168,11 +178,25 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
   }
   :where(a, button, input, textarea, select, summary):focus-visible {
     outline: 2px solid var(--brand);
     outline-offset: 3px;
   }
+}
+
+.swira-atmosphere {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(38, 109, 224, 0.34), transparent 38%),
+    radial-gradient(circle at 12% 82%, rgba(11, 43, 92, 0.82), transparent 44%),
+    var(--deep-900);
+}
+
+.swira-atmosphere-ink {
+  background:
+    radial-gradient(circle at 72% 30%, rgba(11, 43, 92, 0.72), transparent 42%),
+    var(--ink);
 }
 
 @keyframes swira-marquee {
