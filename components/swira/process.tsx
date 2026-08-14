@@ -3,31 +3,31 @@ import { Mark, SectionLabel } from './primitives'
 
 const STEPS = [
   {
-    number: '1',
+    number: '01',
     title: 'Diagnóstico',
     description:
       'Analizamos tu negocio, tu competencia y de dónde vienen (o no vienen) tus clientes.',
   },
   {
-    number: '2',
+    number: '02',
     title: 'Estrategia',
     description:
       'Te presentamos el plan: qué haremos, en qué orden y qué esperamos conseguir.',
   },
   {
-    number: '3',
+    number: '03',
     title: 'Producción',
     description:
       'Grabamos, diseñamos y desarrollamos. Todo en casa, sin subcontratar.',
   },
   {
-    number: '4',
+    number: '04',
     title: 'Lanzamiento',
     description:
       'Publicamos, activamos campañas y conectamos las automatizaciones.',
   },
   {
-    number: '5',
+    number: '05',
     title: 'Optimización',
     description:
       'Medimos cada semana y ajustamos. Informe mensual con números claros.',
@@ -36,7 +36,7 @@ const STEPS = [
 
 export function Process() {
   return (
-    <section className="border-t border-border">
+    <section id="proceso" className="scroll-mt-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal>
           <SectionLabel>Cómo trabajamos</SectionLabel>
