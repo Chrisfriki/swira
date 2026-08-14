@@ -4,6 +4,8 @@ import { Archivo, Inter } from 'next/font/google'
 import './globals.css'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+const siteUrl = 'https://swira.vercel.app'
+const description = 'Agencia de marketing digital especializada en SEO, captación, desarrollo web, automatizaciones, contenido, fotografía y diseño para empresas.'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,10 +22,21 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Swira · Agencia de marketing digital',
-  description:
-    'Hacemos que tu marca se vea, se entienda y venda. Visibilidad, captación, desarrollo y contenido. Un solo equipo para todo tu digital.',
-  generator: 'v0.app',
+  description,
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Swira · Agencia de marketing digital',
+    description,
+    url: siteUrl,
+    siteName: 'Swira',
+    locale: 'es_ES',
+    type: 'website',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Swira, agencia de marketing digital' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Swira · Agencia de marketing digital', description, images: ['/og-image.jpg'] },
   icons: {
     icon: [
       {
@@ -53,12 +66,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Swira',
+    url: siteUrl,
+    logo: `${siteUrl}/icon.svg`,
+    sameAs: ['https://instagram.com', 'https://tiktok.com', 'https://linkedin.com'],
+    contactPoint: { '@type': 'ContactPoint', email: 'hola@swira.com', contactType: 'customer service', availableLanguage: 'Spanish' },
+  }
+
   return (
     <html
       lang="es"
       className={`light bg-background ${inter.variable} ${archivo.variable}`}
     >
       <body className="font-sans antialiased">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, '\\u003c') }} />
         {children}
         {process.env.VERCEL === '1' && <Analytics />}
       </body>

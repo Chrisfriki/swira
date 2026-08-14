@@ -17,7 +17,7 @@ export function Hero() {
     <section className="bg-background px-6 pt-40 pb-20 md:min-h-screen md:pt-48 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
         <div>
-          <Reveal><SectionLabel>Estrategia, diseño y tecnología</SectionLabel></Reveal>
+          <Reveal><SectionLabel>Agencia de marketing digital</SectionLabel></Reveal>
           <Reveal as="h1" delay={80} className="mt-7"><span className="font-heading text-6xl font-extrabold leading-[0.9] tracking-[-0.06em] text-balance md:text-8xl">Digital que se ve. Ideas que <em className="font-extrabold italic text-brand">mueven.</em></span></Reveal>
           <Reveal delay={160} className="mt-8 max-w-xl"><p className="text-lg leading-relaxed text-muted-foreground md:text-xl">Construimos marcas, experiencias y sistemas digitales pensados para hacer crecer negocios ambiciosos.</p></Reveal>
           <Reveal delay={220} className="mt-10 flex flex-wrap gap-3">
