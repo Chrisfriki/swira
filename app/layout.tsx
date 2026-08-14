@@ -24,9 +24,9 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Swira · Agencia de marketing digital',
+  title: { default: 'Swira · Agencia de marketing digital', template: '%s · Swira' },
   description,
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'application/rss+xml': '/feed.xml' } },
   robots: { index: true, follow: true },
   openGraph: {
     title: 'Swira · Agencia de marketing digital',
