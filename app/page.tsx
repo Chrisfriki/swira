@@ -7,12 +7,14 @@ import { SiteFooter } from '@/components/swira/site-footer'
 import { ServicesSection } from '@/components/sections/ServicesSection'
 import { WorkSection } from '@/components/sections/WorkSection'
 import { PainSection } from '@/components/sections/PainSection'
+import { MidCta } from '@/components/sections/MidCta'
 
 export default function Page() {
   return (
     <><SiteHeader /><main><Hero /><ClientLogos /><PainSection />
       <ServicesSection />
       <WorkSection />
+      <MidCta />
       <Results /><FinalCta /></main><SiteFooter /></>
   )
 }
