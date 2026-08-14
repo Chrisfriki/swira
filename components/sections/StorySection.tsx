@@ -39,7 +39,6 @@ function StoryImage({ src, title, fillContainer = false }: { src: string; title:
         alt={`Imagen provisional del caso Welding Systems: ${title}`}
         fill
         unoptimized
-        priority={priority}
         sizes="(max-width: 1023px) 100vw, 50vw"
         className="object-cover"
       />
