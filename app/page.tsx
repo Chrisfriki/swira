@@ -17,11 +17,10 @@ import { StorySection } from '@/components/sections/StorySection'
 
 export default function Page() {
   return (
-    <><SiteHeader /><main><Hero /><ClientLogos /><PainSection /><StorySection />
+    <><SiteHeader /><main><Hero /><ClientLogos /><PainSection /><StorySection /><MidCta />
       <ServicesSection />
       <WorkSection />
       <BeforeAfterSection />
-      <MidCta />
       <ProcessSection /><Results /><TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
 }
