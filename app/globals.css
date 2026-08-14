@@ -216,6 +216,10 @@
   animation: swira-marquee 20s linear infinite;
 }
 
+.animate-swira-marquee-slow {
+  animation: swira-marquee 46s linear infinite;
+}
+
 ::selection { background: #00ce63; color: #06130c; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -223,7 +227,8 @@
     scroll-behavior: auto;
   }
   .animate-swira-marquee,
-  .animate-swira-cta-marquee {
+  .animate-swira-cta-marquee,
+  .animate-swira-marquee-slow {
     animation: none;
   }
 }

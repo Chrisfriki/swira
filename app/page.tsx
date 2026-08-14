@@ -13,6 +13,7 @@ import { TeamSection } from '@/components/sections/TeamSection'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
 import { BlogSection } from '@/components/sections/BlogSection'
+import { IdeasMarquee } from '@/components/sections/IdeasMarquee'
 
 export default function Page() {
   return (
@@ -21,6 +22,6 @@ export default function Page() {
       <WorkSection />
       <BeforeAfterSection />
       <MidCta />
-      <ProcessSection /><Results /><TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
+      <ProcessSection /><Results /><TeamSection /><IdeasMarquee /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
 }
