@@ -1,7 +1,16 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { Reveal } from './reveal'
 import { SectionLabel } from './primitives'
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
+const HERO_WORK = [
+  { src: '/work/work-01.svg', alt: 'Placeholder vertical de contenido para redes sociales', service: 'Contenido', vertical: true },
+  { src: '/work/work-02.svg', alt: 'Placeholder de diseño y desarrollo web', service: 'Desarrollo', vertical: false },
+  { src: '/work/work-03.svg', alt: 'Placeholder de fotografía de producto', service: 'Fotografía', vertical: false },
+]
 
 export function Hero() {
   return (
@@ -16,7 +25,29 @@ export function Hero() {
             <Link href="/servicios" className="inline-flex items-center rounded-full border border-black/10 bg-white/65 px-6 py-4 font-medium backdrop-blur-md transition-colors hover:bg-white">Qué hacemos</Link>
           </Reveal>
         </div>
-        <div aria-hidden="true" />
+        <Reveal delay={120} className="min-w-0">
+          <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 lg:mx-0 lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:overflow-visible lg:px-0 lg:pb-0">
+            {HERO_WORK.map((item, index) => (
+              <article
+                key={item.src}
+                className={`group relative shrink-0 snap-center overflow-hidden border border-border bg-muted ${item.vertical ? 'aspect-[9/16] w-[72vw] lg:row-span-2 lg:w-auto' : 'aspect-[4/3] w-[82vw] lg:w-auto'}`}
+              >
+                <Image
+                  src={`${basePath}${item.src}`}
+                  alt={item.alt}
+                  fill
+                  unoptimized
+                  priority={index === 0}
+                  sizes="(max-width: 1023px) 82vw, 24vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 flex items-end bg-black/80 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                  <p className="font-heading text-2xl font-bold text-white">{item.service}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )
