@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { animate, AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion'
+import { animate, AnimatePresence, motion, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from '@/components/swira/primitives'
+import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
@@ -107,7 +108,7 @@ function StaticStory({ periodo }: { periodo?: string }) {
 export function StorySection({ periodo }: { periodo?: string }) {
   const [active, setActive] = useState(0)
   const refs = useRef<Array<HTMLElement | null>>([])
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
 
   useEffect(() => {
     if (reduceMotion) return

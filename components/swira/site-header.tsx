@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
 const NAV_LINKS = [
   { label: 'Servicios', href: '/#servicios' },
@@ -16,7 +17,7 @@ const NAV_LINKS = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
   const [dark, setDark] = useState(true)
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>('[data-theme]')

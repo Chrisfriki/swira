@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect } from 'react'
-import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import Lenis from 'lenis'
+import { useHydratedReducedMotion } from './use-hydrated-reduced-motion'
 
 export function MotionShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, mass: 0.25 })
 

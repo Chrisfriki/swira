@@ -4,9 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { ImageReveal, WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from '@/components/swira/primitives'
+import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
@@ -26,7 +27,7 @@ export function WorkSection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true, containScroll: 'trimSnaps', align: 'start' })
   const [progress, setProgress] = useState(0)
   const [cursorVisible, setCursorVisible] = useState(false)
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
   const cursorX = useSpring(useMotionValue(-100), { stiffness: 420, damping: 36 })
   const cursorY = useSpring(useMotionValue(-100), { stiffness: 420, damping: 36 })
 

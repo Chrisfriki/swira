@@ -1,10 +1,11 @@
 'use client'
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useHydratedReducedMotion } from './use-hydrated-reduced-motion'
 
 export function WordReveal({ text, emphasis, className }: { text: string; emphasis?: string; className?: string }) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
   const words = text.split(' ')
   return (
     <span className={cn('inline-flex flex-wrap', className)}>
@@ -29,7 +30,7 @@ export function WordReveal({ text, emphasis, className }: { text: string; emphas
 }
 
 export function ImageReveal({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
   return (
     <motion.div
       className={className}
@@ -44,7 +45,7 @@ export function ImageReveal({ children, className, delay = 0 }: { children: Reac
 }
 
 export function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
   const pointerX = useMotionValue(0.5)
   const pointerY = useMotionValue(0.5)
   const rotateX = useSpring(useTransform(pointerY, [0, 1], [6, -6]), { stiffness: 180, damping: 20 })

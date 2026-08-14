@@ -2,10 +2,11 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { ImageReveal, TiltCard, WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from './primitives'
+import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
@@ -16,7 +17,7 @@ const HERO_WORK = [
 ]
 
 export function Hero() {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
 
   return (
     <section data-theme="dark" className="relative min-h-dvh overflow-hidden bg-deep-900 text-white">

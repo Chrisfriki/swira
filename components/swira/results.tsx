@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { animate, useInView, useReducedMotion } from 'framer-motion'
+import { animate, useInView } from 'framer-motion'
 import { WordReveal } from '@/components/motion/motion-primitives'
+import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
 const RESULTS = [
   { value: 180, prefix: '+', suffix: '%', description: 'de leads cualificados en 4 meses', client: 'Placeholder Cliente A · E-commerce de moda' },
@@ -13,7 +14,7 @@ const RESULTS = [
 function AnimatedMetric({ value, prefix, suffix }: { value: number; prefix: string; suffix: string }) {
   const ref = useRef<HTMLParagraphElement>(null)
   const inView = useInView(ref, { once: true, amount: .7 })
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useHydratedReducedMotion()
   const [display, setDisplay] = useState(0)
   useEffect(() => {
     if (!inView) return
