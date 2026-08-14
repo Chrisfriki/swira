@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { Reveal } from './reveal'
 import { Mark } from './primitives'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const TEAM = [
   { name: 'Lucía Marín', role: 'Estrategia y dirección', query: 'portrait woman creative director studio' },
   { name: 'Diego Ferrer', role: 'Desarrollo y producto', query: 'portrait man developer studio' },
@@ -32,7 +34,7 @@ export function Team() {
               <figure className="group">
                 <div className="relative aspect-[3/4] overflow-hidden border border-border">
                   <Image
-                    src={`/placeholder.svg?height=800&width=600&query=${encodeURIComponent(member.query)}`}
+                    src={`${basePath}/placeholder.svg?height=800&width=600&query=${encodeURIComponent(member.query)}`}
                     alt={`Retrato de ${member.name}, ${member.role} en Swira`}
                     fill
                     sizes="(min-width: 1024px) 25vw, 50vw"

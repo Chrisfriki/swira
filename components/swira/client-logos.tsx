@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const LOGOS = [
   'Nordvik',
   'Casavana',
@@ -17,7 +19,7 @@ function LogoRow() {
       {LOGOS.map((name) => (
         <li key={name} className="flex items-center">
           <Image
-            src={`/placeholder.svg?height=40&width=140&query=${encodeURIComponent(
+            src={`${basePath}/placeholder.svg?height=40&width=140&query=${encodeURIComponent(
               name + ' logo monochrome wordmark',
             )}`}
             alt={`Logotipo de ${name}`}

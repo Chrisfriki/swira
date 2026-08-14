@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { Reveal } from './reveal'
 import { Mark } from './primitives'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 type Item = {
   label: string
   ratio: 'vertical' | 'horizontal'
@@ -34,7 +36,7 @@ export function WorkGallery() {
             <Reveal key={item.label} delay={i * 80} className="mb-4 break-inside-avoid">
               <figure className="group relative overflow-hidden border border-border">
                 <Image
-                  src={`/placeholder.svg?height=${item.h}&width=${item.w}&query=${encodeURIComponent(item.query)}`}
+                  src={`${basePath}/placeholder.svg?height=${item.h}&width=${item.w}&query=${encodeURIComponent(item.query)}`}
                   alt={`Trabajo de Swira: ${item.label}`}
                   width={item.w}
                   height={item.h}

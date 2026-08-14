@@ -3,6 +3,8 @@ import { ArrowUpRight } from 'lucide-react'
 import { Reveal } from './reveal'
 import { Mark, SectionLabel } from './primitives'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 export function Hero() {
   return (
     <section id="top" className="mx-auto max-w-7xl px-6 pt-16 pb-20 md:pt-24 md:pb-28 lg:px-10">
@@ -47,7 +49,7 @@ export function Hero() {
       <Reveal delay={120} className="mt-16 md:mt-20">
         <div className="relative aspect-[21/9] w-full overflow-hidden border border-border">
           <Image
-            src="/placeholder.svg?height=900&width=2100"
+            src={`${basePath}/placeholder.svg?height=900&width=2100`}
             alt="Trabajo audiovisual y de marca producido por el equipo de Swira"
             fill
             priority
