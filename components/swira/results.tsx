@@ -3,19 +3,19 @@ import { Mark } from './primitives'
 
 const RESULTS = [
   {
-    metric: '+180%',
-    description: 'de leads cualificados en 4 meses',
-    client: 'Cliente A · E-commerce de moda',
+    metric: '+___%',
+    description: 'de leads cualificados · métrica pendiente',
+    client: 'Caso de cliente por sustituir',
   },
   {
-    metric: 'x3',
-    description: 'en visitas orgánicas desde Google',
-    client: 'Cliente B · Clínica dental',
+    metric: 'x__',
+    description: 'en visitas orgánicas · métrica pendiente',
+    client: 'Caso de cliente por sustituir',
   },
   {
-    metric: '−43%',
-    description: 'de coste por lead en campañas',
-    client: 'Cliente C · Formación online',
+    metric: '−__%',
+    description: 'de coste por lead · métrica pendiente',
+    client: 'Caso de cliente por sustituir',
   },
 ]
 

@@ -3,14 +3,14 @@ import Image from 'next/image'
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
 const LOGOS = [
-  'Nordvik',
-  'Casavana',
-  'Lumo',
-  'Perla',
-  'Astra',
-  'Vela & Co',
-  'Mistral',
-  'Fauna',
+  'Marca 01 · placeholder',
+  'Marca 02 · placeholder',
+  'Marca 03 · placeholder',
+  'Marca 04 · placeholder',
+  'Marca 05 · placeholder',
+  'Marca 06 · placeholder',
+  'Marca 07 · placeholder',
+  'Marca 08 · placeholder',
 ]
 
 function LogoRow() {
