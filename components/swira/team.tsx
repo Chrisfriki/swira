@@ -5,10 +5,10 @@ import { Mark } from './primitives'
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
 const TEAM = [
-  { name: 'Lucía Marín', role: 'Estrategia y dirección', query: 'portrait woman creative director studio' },
-  { name: 'Diego Ferrer', role: 'Desarrollo y producto', query: 'portrait man developer studio' },
-  { name: 'Nadia Ortiz', role: 'Contenido y fotografía', query: 'portrait woman photographer studio' },
-  { name: 'Marc Salas', role: 'Captación y campañas', query: 'portrait man marketing specialist studio' },
+  { name: 'Nombre por definir', role: 'Estrategia y dirección', src: '/team/team-01.svg' },
+  { name: 'Nombre por definir', role: 'Desarrollo y producto', src: '/team/team-02.svg' },
+  { name: 'Nombre por definir', role: 'Contenido y fotografía', src: '/team/team-03.svg' },
+  { name: 'Nombre por definir', role: 'Captación y campañas', src: '/team/team-04.svg' },
 ]
 
 export function Team() {
@@ -22,9 +22,8 @@ export function Team() {
         </Reveal>
         <Reveal delay={80}>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Swira es un equipo pequeño y multidisciplinar. Estrategas,
-            diseñadores, desarrolladores y creadores que trabajan juntos, en
-            casa y sin subcontratar, para que tu marca crezca de verdad.
+            Somos un equipo pequeño y sin capas intermedias. Hablas con quien
+            hace el trabajo, no con un gestor de cuentas.
           </p>
         </Reveal>
 
@@ -34,11 +33,12 @@ export function Team() {
               <figure className="group">
                 <div className="relative aspect-[3/4] overflow-hidden border border-border">
                   <Image
-                    src={`${basePath}/placeholder.svg?height=800&width=600&query=${encodeURIComponent(member.query)}`}
-                    alt={`Retrato de ${member.name}, ${member.role} en Swira`}
+                    src={`${basePath}${member.src}`}
+                    alt={`Retrato pendiente de sustituir para el rol de ${member.role}`}
                     fill
+                    unoptimized
                     sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+                    className="object-cover grayscale transition-all duration-[400ms] group-hover:grayscale-0"
                   />
                 </div>
                 <figcaption className="mt-4">
