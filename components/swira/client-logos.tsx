@@ -35,8 +35,10 @@ function LogoRow() {
 export function ClientLogos() {
   return (
     <section
+      id="marcas"
+      data-header-theme="light"
       aria-label="Marcas que confían en Swira"
-      className="border-y border-border py-14 md:py-16"
+      className="scroll-mt-32 border-y border-border bg-paper py-14"
     >
       <p className="mb-10 text-center text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
         Marcas que ya confían en Swira
