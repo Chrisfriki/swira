@@ -29,7 +29,7 @@ export function Team() {
 
         <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {TEAM.map((member, i) => (
-            <Reveal key={member.name} delay={i * 80}>
+            <Reveal key={member.role} delay={i * 80}>
               <figure className="group">
                 <div className="relative aspect-[3/4] overflow-hidden border border-border">
                   <Image

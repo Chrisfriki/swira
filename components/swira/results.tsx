@@ -32,7 +32,7 @@ export function Results() {
         <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
           {RESULTS.map((result, i) => (
             <Reveal
-              key={result.client}
+              key={result.metric}
               delay={i * 100}
               className="flex flex-col gap-6 bg-background p-8 md:p-10"
             >
