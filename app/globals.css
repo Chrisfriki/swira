@@ -44,6 +44,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --color-brand: var(--brand);
+  --color-surface-dark: var(--surface-dark);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
@@ -53,6 +54,7 @@
   --background: #ffffff;
   --foreground: #0a0a0a;
   --brand: #00ce63;
+  --surface-dark: #0a0a0a;
   --card: #ffffff;
   --card-foreground: #0a0a0a;
   --popover: #ffffff;
@@ -183,27 +185,6 @@
   animation: swira-marquee 20s linear infinite;
 }
 
-@keyframes swira-float {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  35% { transform: translate3d(4rem, 2rem, 0) scale(1.08); }
-  70% { transform: translate3d(-2rem, 4rem, 0) scale(.94); }
-}
-
-.swira-orb {
-  position: absolute;
-  width: min(44rem, 85vw);
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: .58;
-  animation: swira-float 18s ease-in-out infinite;
-  will-change: transform;
-}
-
-.swira-orb-blue { background: #2868ff; }
-.swira-orb-cyan { background: #49c7ff; animation-delay: -7s; }
-.swira-orb-green { background: #00ce63; opacity: .2; animation-delay: -12s; }
-
 ::selection { background: #00ce63; color: #06130c; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -211,5 +192,4 @@
   .animate-swira-cta-marquee {
     animation: none;
   }
-  .swira-orb { animation: none; }
 }

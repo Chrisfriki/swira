@@ -7,7 +7,7 @@ function TickerLine() {
       <strong>Las buenas ideas no se quedan quietas</strong>
       <span aria-hidden="true" className="size-2.5 rounded-full bg-brand" />
       <em className="font-normal italic">Hagamos que la tuya se mueva</em>
-      <span aria-hidden="true" className="size-2.5 rounded-full bg-blue-600" />
+      <span aria-hidden="true" className="size-2.5 rounded-full bg-brand" />
     </span>
   )
 }
