@@ -23,11 +23,11 @@ export function ProcessSection() {
       <SectionLabel>Cómo trabajamos</SectionLabel>
       <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight"><WordReveal text="Sin sorpresas. Paso a paso." emphasis="Paso" /></h2>
       <div className="relative mt-16">
-        <div className="absolute top-0 bottom-0 left-1 w-px bg-border md:inset-x-0 md:top-1 md:bottom-auto md:h-px md:w-auto"><motion.div className="h-full origin-top bg-brand md:hidden" style={{ scaleY: progress }} /><motion.div className="hidden h-full origin-left bg-brand md:block" style={{ scaleX: progress }} /></div>
-        <ol className="grid gap-14 pl-8 md:grid-cols-5 md:gap-6 md:pl-0">
+        <div className="absolute top-0 bottom-0 left-1 w-px bg-border lg:inset-x-0 lg:top-1 lg:bottom-auto lg:h-px lg:w-auto"><motion.div className="h-full origin-top bg-brand lg:hidden" style={{ scaleY: progress }} /><motion.div className="hidden h-full origin-left bg-brand lg:block" style={{ scaleX: progress }} /></div>
+        <ol className="grid gap-14 pl-8 lg:grid-cols-5 lg:gap-6 lg:pl-0">
           {STEPS.map(([number, title, description]) => (
-            <li key={number} className="relative pt-8 md:pt-10">
-              <span className="absolute top-0 -left-[35px] size-2.5 rounded-full bg-brand md:-left-0.5" aria-hidden="true" />
+            <li key={number} className="relative pt-8 lg:pt-10">
+              <span className="absolute top-0 -left-[35px] size-2.5 rounded-full bg-brand lg:-left-0.5" aria-hidden="true" />
               <span className="font-heading text-lg font-extrabold text-brand">{number}</span>
               <h3 className="mt-3 font-heading text-2xl font-bold tracking-tight md:text-3xl">{title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>

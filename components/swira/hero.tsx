@@ -52,7 +52,7 @@ export function Hero() {
           {HERO_WORK.map((item, index) => (
             <ImageReveal key={item.src} delay={index * .12} className={item.className}>
               <TiltCard className="group relative size-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                <Image src={`${basePath}${item.src}`} alt={item.alt} fill unoptimized priority={index === 0} sizes={index === 0 ? '(max-width: 1023px) 50vw, 24vw' : '(max-width: 1023px) 50vw, 22vw'} className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src={`${basePath}${item.src}`} alt={item.alt} fill unoptimized loading="eager" sizes={index === 0 ? '(max-width: 1023px) 50vw, 24vw' : '(max-width: 1023px) 50vw, 22vw'} className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <span className="absolute right-3 bottom-3 rounded-full bg-ink/75 px-3 py-1.5 text-[10px] font-semibold tracking-[.12em] text-white uppercase backdrop-blur-md">{item.label}</span>
               </TiltCard>
             </ImageReveal>
