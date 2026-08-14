@@ -16,10 +16,10 @@ const SERVICES = [
 ]
 
 const COMPANY = [
-  { label: 'Nosotros', href: '/nosotros' },
-  { label: 'Casos', href: '/casos' },
-  { label: 'Servicios', href: '/servicios' },
-  { label: 'Contacto', href: '/contacto' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Trabajo', href: '/#trabajo' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Contacto', href: '/#contacto' },
 ]
 
 const LEGAL = ['Aviso legal', 'Política de privacidad', 'Política de cookies']
@@ -73,7 +73,7 @@ export function SiteFooter() {
               {SERVICES.map((service) => (
                 <li key={service}>
                   <Link
-                    href="/servicios"
+                    href="/#servicios"
                     className="text-sm text-foreground transition-colors hover:text-brand"
                   >
                     {service}

@@ -21,8 +21,8 @@ export function Hero() {
           <Reveal as="h1" delay={80} className="mt-7"><span className="font-heading text-6xl font-extrabold leading-[0.9] tracking-[-0.06em] text-balance md:text-8xl">Digital que se ve. Ideas que <span className="text-brand">mueven.</span></span></Reveal>
           <Reveal delay={160} className="mt-8 max-w-xl"><p className="text-lg leading-relaxed text-[#3f4652] md:text-xl">Construimos marcas, experiencias y sistemas digitales pensados para hacer crecer negocios ambiciosos.</p></Reveal>
           <Reveal delay={220} className="mt-10 flex flex-wrap gap-3">
-            <Link href="/casos" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-4 font-medium text-white transition-transform hover:-translate-y-1">Ver proyectos <ArrowUpRight className="size-5" /></Link>
-            <Link href="/servicios" className="inline-flex items-center rounded-full border border-black/10 bg-white/65 px-6 py-4 font-medium backdrop-blur-md transition-colors hover:bg-white">Qué hacemos</Link>
+            <Link href="#trabajo" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-4 font-medium text-white transition-transform hover:-translate-y-1">Ver proyectos <ArrowUpRight className="size-5" aria-hidden="true" /></Link>
+            <Link href="#servicios" className="inline-flex items-center rounded-full border border-border bg-white px-6 py-4 font-medium transition-colors hover:border-brand hover:text-brand">Qué hacemos</Link>
           </Reveal>
         </div>
         <Reveal delay={120} className="min-w-0">

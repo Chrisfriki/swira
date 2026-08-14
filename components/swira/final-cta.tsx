@@ -24,10 +24,10 @@ function TickerGroup() {
 
 export function FinalCta() {
   return (
-    <section id="contacto" className="bg-[#0a0a0a] text-white">
+    <section id="contacto" className="relative z-0 scroll-mt-32 bg-surface-dark text-white">
       <div
         aria-label="Las buenas ideas no se quedan quietas. Hagamos que la tuya se mueva."
-        className="overflow-hidden border-y border-black/10 bg-white py-5 text-black"
+        className="relative z-0 overflow-hidden border-y border-border bg-white py-5 text-black"
       >
         <div aria-hidden="true" className="flex w-max animate-swira-cta-marquee font-heading text-xl tracking-[-0.02em] uppercase md:text-3xl">
           <TickerGroup />

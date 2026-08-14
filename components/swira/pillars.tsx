@@ -32,7 +32,7 @@ const PILLARS = [
 
 export function Pillars() {
   return (
-    <section id="servicios" className="border-t border-border">
+    <section id="servicios" className="scroll-mt-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal>
           <SectionLabel>Lo que hacemos</SectionLabel>
