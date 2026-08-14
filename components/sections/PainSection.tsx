@@ -10,7 +10,7 @@ const PAINS = [
 
 export function PainSection() {
   return (
-    <section data-theme="light" className="relative isolate z-10 overflow-hidden bg-paper py-24 md:py-32">
+    <section data-theme="light" className="relative isolate z-10 overflow-hidden bg-paper pt-24 md:pt-32">
       <div className="px-6 lg:px-10">
         <SectionLabel>El punto de partida</SectionLabel>
         <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight text-ink">

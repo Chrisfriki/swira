@@ -38,7 +38,7 @@ export function ClientLogos() {
       id="marcas"
       data-theme="light"
       aria-label="Marcas que confían en Swira"
-      className="scroll-mt-32 border-y border-border bg-paper py-14"
+      className="border-y border-border bg-paper pt-14"
     >
       <p className="mb-10 text-center text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
         Marcas que ya confían en Swira
