@@ -31,9 +31,9 @@ export function ServicesSection() {
   }, [])
 
   return (
-    <section id="servicios" data-theme="dark" className="swira-atmosphere text-white">
+    <section id="servicios" data-theme="dark" className="swira-atmosphere relative isolate overflow-hidden text-white">
       <div className="px-6 pt-24 md:pt-32 lg:px-10"><SectionLabel className="text-white/60">Lo que hacemos</SectionLabel></div>
-      <div className="mx-auto grid max-w-[1600px] gap-12 px-6 pb-24 md:pb-32 lg:grid-cols-[1fr_1fr] lg:px-10">
+      <div className="mx-auto grid w-full max-w-[1600px] gap-12 px-6 pb-24 md:pb-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:px-10">
         <div className="hidden lg:block">
           <div className="sticky top-28 h-[calc(100vh-8.5rem)] overflow-hidden rounded-xl border border-white/10">
             <AnimatePresence mode="wait">
