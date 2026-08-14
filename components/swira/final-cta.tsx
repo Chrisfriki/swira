@@ -1,9 +1,29 @@
 import { ArrowUpRight } from 'lucide-react'
 import { Reveal } from './reveal'
 
+function TickerLine() {
+  return (
+    <span className="flex shrink-0 items-center gap-5 pr-5">
+      <strong>Las buenas ideas no se quedan quietas</strong>
+      <span aria-hidden="true" className="size-2.5 rounded-full bg-brand" />
+      <em className="font-normal italic">Hagamos que la tuya se mueva</em>
+      <span aria-hidden="true" className="size-2.5 rounded-full bg-blue-600" />
+    </span>
+  )
+}
+
 export function FinalCta() {
   return (
     <section id="contacto" className="bg-[#0a0a0a] text-white">
+      <div
+        aria-label="Las buenas ideas no se quedan quietas. Hagamos que la tuya se mueva."
+        className="overflow-hidden border-y border-black/10 bg-white py-5 text-black"
+      >
+        <div aria-hidden="true" className="flex w-max animate-swira-cta-marquee font-heading text-xl tracking-[-0.02em] uppercase md:text-3xl">
+          <TickerLine />
+          <TickerLine />
+        </div>
+      </div>
       <div className="mx-auto max-w-7xl px-6 py-28 md:py-40 lg:px-10">
         <Reveal as="h2">
           <span className="font-heading text-5xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-8xl">
