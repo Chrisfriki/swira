@@ -3,7 +3,8 @@ import Link from 'next/link'
 const SERVICES = [
   'SEO en Google',
   'Google Business Profile',
-  'Instagram y TikTok',
+  'Instagram',
+  'TikTok',
   'Embudos de venta',
   'Estrategia de leads',
   'Automatizaciones',
@@ -18,6 +19,7 @@ const SERVICES = [
 const COMPANY = [
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Trabajo', href: '/#trabajo' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Servicios', href: '/#servicios' },
   { label: 'Contacto', href: '/#contacto' },
 ]
@@ -52,21 +54,21 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-background">
+    <footer data-header-theme="dark" className="border-t border-white/10 bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-heading text-4xl font-extrabold lowercase tracking-tight text-foreground">
+            <p className="font-heading text-4xl font-extrabold lowercase tracking-tight text-white">
               swira
             </p>
-            <p className="mt-4 max-w-xs text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-xs text-base leading-relaxed text-white/60">
               Un solo equipo para todo tu digital. Visibilidad, captación,
               desarrollo y contenido.
             </p>
           </div>
 
           <nav aria-label="Servicios">
-            <h2 className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <h2 className="text-xs font-medium tracking-[0.2em] text-white/55 uppercase">
               Servicios
             </h2>
             <ul className="mt-5 space-y-2.5">
@@ -74,7 +76,7 @@ export function SiteFooter() {
                 <li key={service}>
                   <Link
                     href="/#servicios"
-                    className="text-sm text-foreground transition-colors hover:text-brand"
+                    className="text-sm text-white/80 transition-colors hover:text-brand"
                   >
                     {service}
                   </Link>
@@ -84,7 +86,7 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-label="Empresa">
-            <h2 className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <h2 className="text-xs font-medium tracking-[0.2em] text-white/55 uppercase">
               Empresa
             </h2>
             <ul className="mt-5 space-y-2.5">
@@ -92,7 +94,7 @@ export function SiteFooter() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-foreground transition-colors hover:text-brand"
+                    className="text-sm text-white/80 transition-colors hover:text-brand"
                   >
                     {item.label}
                   </Link>
@@ -102,10 +104,10 @@ export function SiteFooter() {
           </nav>
 
           <div>
-            <h2 className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <h2 className="text-xs font-medium tracking-[0.2em] text-white/55 uppercase">
               Contacto
             </h2>
-            <ul className="mt-5 space-y-2.5 text-sm text-foreground">
+            <ul className="mt-5 space-y-2.5 text-sm text-white/80">
               <li>
                 <a href="mailto:hola@swira.com" className="transition-colors hover:text-brand">
                   hola@swira.com
@@ -116,7 +118,7 @@ export function SiteFooter() {
                   +34 910 000 000
                 </a>
               </li>
-              <li className="text-muted-foreground">Calle Gran Vía 1, Madrid</li>
+              <li className="text-white/55">Calle Gran Vía 1, Madrid</li>
               <li>
                 <a href="https://wa.me/34600000000" className="transition-colors hover:text-brand">
                   WhatsApp
@@ -126,13 +128,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-border pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-sm text-muted-foreground">© 2026 Swira</p>
+        <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-sm text-white/55">© 2026 Swira</p>
 
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {LEGAL.map((item) => (
               <li key={item}>
-                <span className="text-sm text-muted-foreground">{item}</span>
+                <span className="text-sm text-white/55">{item}</span>
               </li>
             ))}
           </ul>
@@ -141,21 +143,21 @@ export function SiteFooter() {
             <a
               href="https://instagram.com"
               aria-label="Swira en Instagram"
-              className="text-foreground transition-colors hover:text-brand"
+              className="text-white transition-colors hover:text-brand"
             >
               <InstagramIcon className="size-5" aria-hidden="true" />
             </a>
             <a
               href="https://tiktok.com"
               aria-label="Swira en TikTok"
-              className="text-foreground transition-colors hover:text-brand"
+              className="text-white transition-colors hover:text-brand"
             >
               <TiktokIcon className="size-5" aria-hidden="true" />
             </a>
             <a
               href="https://linkedin.com"
               aria-label="Swira en LinkedIn"
-              className="text-foreground transition-colors hover:text-brand"
+              className="text-white transition-colors hover:text-brand"
             >
               <LinkedinIcon className="size-5" aria-hidden="true" />
             </a>
