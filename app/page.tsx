@@ -13,10 +13,11 @@ import { TeamSection } from '@/components/sections/TeamSection'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
 import { BlogSection } from '@/components/sections/BlogSection'
+import { StorySection } from '@/components/sections/StorySection'
 
 export default function Page() {
   return (
-    <><SiteHeader /><main><Hero /><ClientLogos /><PainSection />
+    <><SiteHeader /><main><Hero /><ClientLogos /><PainSection /><StorySection />
       <ServicesSection />
       <WorkSection />
       <BeforeAfterSection />
