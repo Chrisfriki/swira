@@ -8,23 +8,23 @@ import { Mark } from './primitives'
 const FAQS = [
   {
     q: '¿Cuánto tarda en verse resultados?',
-    a: 'Depende del canal. En campañas de captación puedes ver movimiento en semanas; en SEO y contenido orgánico el crecimiento es sólido a partir del tercer o cuarto mes. Te damos previsiones realistas desde el diagnóstico.',
+    a: 'Depende del servicio. En campañas de captación, entre 2 y 4 semanas. En SEO, entre 3 y 6 meses. Te lo decimos con honestidad en la primera reunión.',
   },
   {
     q: '¿Trabajáis con permanencia?',
-    a: 'Trabajamos por objetivos, no por ataduras. Proponemos ciclos de trabajo claros y si en algún momento no aportamos, lo hablamos. Sin letra pequeña.',
+    a: 'No obligamos a permanencias largas. Trabajamos por proyecto o con cuota mensual sin ataduras: si no aportamos, te vas.',
   },
   {
     q: '¿Qué necesitáis de mí para empezar?',
-    a: 'Acceso a tus cuentas y perfiles, una conversación honesta sobre tu negocio y tus objetivos, y disponibilidad para una reunión breve al mes. Del resto nos encargamos nosotros.',
+    a: 'Una reunión de 20 minutos, acceso a tus cuentas y perfiles, y que nos cuentes qué ha funcionado y qué no. Del resto nos ocupamos nosotros.',
   },
   {
     q: '¿Podéis encargaros solo de una parte?',
-    a: 'Sí. Puedes contratar un solo pilar (por ejemplo, solo contenido o solo desarrollo) o el sistema completo. Nos adaptamos a lo que tu marca necesita ahora.',
+    a: 'Sí. Puedes contratar un solo servicio o el sistema completo. Muchos clientes empiezan por uno y amplían.',
   },
   {
     q: '¿Trabajáis con empresas de toda España?',
-    a: 'Sí. Trabajamos en remoto con marcas de toda España y nos desplazamos para las grabaciones y sesiones de fotografía cuando hace falta.',
+    a: 'Sí. Trabajamos en remoto con clientes de toda España y nos desplazamos cuando hay rodaje o sesión de fotos.',
   },
 ]
 
@@ -37,7 +37,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="flex w-full items-center justify-between gap-6 py-6 text-left"
+          className="flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none"
         >
           <span className="font-heading text-xl font-bold tracking-tight text-foreground md:text-2xl">
             {q}
@@ -70,8 +70,15 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export function Faq() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  }
+
   return (
-    <section className="border-t border-border">
+    <section id="faq" className="scroll-mt-32 border-t border-border">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal as="h2">
           <span className="font-heading text-4xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-6xl">

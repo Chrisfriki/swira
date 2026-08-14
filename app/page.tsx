@@ -10,6 +10,7 @@ import { PainSection } from '@/components/sections/PainSection'
 import { MidCta } from '@/components/sections/MidCta'
 import { ProcessSection } from '@/components/sections/ProcessSection'
 import { TeamSection } from '@/components/sections/TeamSection'
+import { FaqSection } from '@/components/sections/FaqSection'
 
 export default function Page() {
   return (
@@ -17,6 +18,6 @@ export default function Page() {
       <ServicesSection />
       <WorkSection />
       <MidCta />
-      <ProcessSection /><Results /><TeamSection /><FinalCta /></main><SiteFooter /></>
+      <ProcessSection /><Results /><TeamSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
 }
