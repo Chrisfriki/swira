@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Reveal } from './reveal'
-import { Mark } from './primitives'
+import { WordReveal } from '@/components/motion/motion-primitives'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
@@ -13,11 +13,11 @@ const TEAM = [
 
 export function Team() {
   return (
-    <section id="nosotros" className="scroll-mt-32 border-t border-border">
+    <section id="nosotros" data-header-theme="light" className="scroll-mt-32 bg-paper">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal as="h2">
           <span className="font-heading text-4xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-6xl">
-            Detrás de esto <em className="font-extrabold italic"><Mark>hay personas</Mark></em>.
+            <WordReveal text="Detrás de esto hay personas." emphasis="personas" />
           </span>
         </Reveal>
         <Reveal delay={80}>
@@ -27,9 +27,9 @@ export function Team() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-4 lg:gap-6">
           {TEAM.map((member, i) => (
-            <Reveal key={member.role} delay={i * 80}>
+            <Reveal key={member.role} delay={i * 80} className={i % 2 === 1 ? 'lg:translate-y-14' : ''}>
               <figure className="group">
                 <div className="relative aspect-[3/4] overflow-hidden border border-border">
                   <Image
