@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const SERVICES = [
   'SEO en Google',
   'Google Business Profile',
@@ -14,10 +16,10 @@ const SERVICES = [
 ]
 
 const COMPANY = [
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Casos', href: '#casos' },
-  { label: 'Blog', href: '#' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Nosotros', href: '/nosotros' },
+  { label: 'Casos', href: '/casos' },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Contacto', href: '/contacto' },
 ]
 
 const LEGAL = ['Aviso legal', 'Política de privacidad', 'Política de cookies']
@@ -70,12 +72,12 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-2.5">
               {SERVICES.map((service) => (
                 <li key={service}>
-                  <a
-                    href="#servicios"
+                  <Link
+                    href="/servicios"
                     className="text-sm text-foreground transition-colors hover:text-brand"
                   >
                     {service}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -88,12 +90,12 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-2.5">
               {COMPANY.map((item) => (
                 <li key={item.label}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-sm text-foreground transition-colors hover:text-brand"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

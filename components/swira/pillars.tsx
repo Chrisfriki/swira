@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Reveal } from './reveal'
 import { Mark, SectionLabel } from './primitives'
@@ -45,8 +46,8 @@ export function Pillars() {
         <div className="mt-14 border-t border-border">
           {PILLARS.map((pillar, i) => (
             <Reveal key={pillar.number} delay={i * 80}>
-              <a
-                href="#contacto"
+              <Link
+                href="/contacto"
                 className="group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-b border-border px-2 py-8 transition-colors hover:bg-muted md:gap-10 md:px-4 md:py-12"
               >
                 <span className="font-heading text-4xl font-extrabold tabular-nums text-brand md:text-6xl">
@@ -64,7 +65,7 @@ export function Pillars() {
                   className="size-6 text-foreground transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand md:size-8"
                   aria-hidden="true"
                 />
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>
