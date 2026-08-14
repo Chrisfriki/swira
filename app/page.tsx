@@ -11,12 +11,14 @@ import { MidCta } from '@/components/sections/MidCta'
 import { ProcessSection } from '@/components/sections/ProcessSection'
 import { TeamSection } from '@/components/sections/TeamSection'
 import { FaqSection } from '@/components/sections/FaqSection'
+import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
 
 export default function Page() {
   return (
     <><SiteHeader /><main><Hero /><ClientLogos /><PainSection />
       <ServicesSection />
       <WorkSection />
+      <BeforeAfterSection />
       <MidCta />
       <ProcessSection /><Results /><TeamSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
