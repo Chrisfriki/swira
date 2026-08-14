@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { Reveal } from './reveal'
+import { WordReveal } from '@/components/motion/motion-primitives'
 
 function TickerLine() {
   return (
@@ -24,7 +25,7 @@ function TickerGroup() {
 
 export function FinalCta() {
   return (
-    <section id="contacto" className="relative z-0 scroll-mt-32 bg-surface-dark text-white">
+    <section id="contacto" data-header-theme="dark" className="swira-atmosphere-ink relative z-0 scroll-mt-32 text-white">
       <div
         aria-label="Las buenas ideas no se quedan quietas. Hagamos que la tuya se mueva."
         className="relative z-0 overflow-hidden border-y border-border bg-white py-5 text-black"
@@ -37,7 +38,7 @@ export function FinalCta() {
       <div className="mx-auto max-w-7xl px-6 py-28 md:py-40 lg:px-10">
         <Reveal as="h2">
           <span className="font-heading text-5xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-8xl">
-            ¿Hablamos <em className="font-extrabold italic text-brand">20 minutos</em>?
+            <WordReveal text="¿Hablamos 20 minutos?" emphasis="20" />
           </span>
         </Reveal>
 
