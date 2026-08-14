@@ -44,7 +44,7 @@ export function ClientLogos() {
       </p>
       <div
         aria-hidden="true"
-        className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]"
+        className="relative overflow-hidden"
       >
         <div className="flex w-max animate-swira-marquee">
           <LogoRow />

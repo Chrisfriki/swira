@@ -28,7 +28,7 @@ export function SiteHeader() {
       {open ? <div className="pointer-events-auto fixed inset-0 z-50 bg-white p-4 md:hidden">
         <div className="flex h-16 items-center justify-between rounded-full border border-border bg-white px-5">
           <Link href="/" onClick={() => setOpen(false)} className="font-heading text-2xl font-extrabold lowercase">swira<span className="text-brand">.</span></Link>
-          <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar menú" className="inline-flex size-10 items-center justify-center"><X className="size-5" /></button>
+          <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar menú" className="inline-flex size-10 items-center justify-center"><X className="size-5" aria-hidden="true" /></button>
         </div>
         <nav aria-label="Navegación móvil" className="flex flex-col px-3 pt-16">
           {NAV_LINKS.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="border-b border-border py-5 font-heading text-4xl font-bold tracking-tight">{link.label}</Link>)}

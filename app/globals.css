@@ -169,6 +169,10 @@
   body {
     @apply bg-background text-foreground;
   }
+  :where(a, button, input, textarea, select, summary):focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+  }
 }
 
 @keyframes swira-marquee {
@@ -191,6 +195,9 @@
 ::selection { background: #00ce63; color: #06130c; }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .animate-swira-marquee,
   .animate-swira-cta-marquee {
     animation: none;

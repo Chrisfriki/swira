@@ -132,12 +132,7 @@ export function SiteFooter() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {LEGAL.map((item) => (
               <li key={item}>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground transition-colors hover:text-brand"
-                >
-                  {item}
-                </a>
+                <span className="text-sm text-muted-foreground">{item}</span>
               </li>
             ))}
           </ul>

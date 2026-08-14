@@ -13,7 +13,7 @@ const TEAM = [
 
 export function Team() {
   return (
-    <section id="nosotros" className="border-t border-border">
+    <section id="nosotros" className="scroll-mt-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
         <Reveal as="h2">
           <span className="font-heading text-4xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-6xl">
