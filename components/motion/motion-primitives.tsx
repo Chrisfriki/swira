@@ -12,7 +12,7 @@ export function WordReveal({ text, emphasis, className }: { text: string; emphas
       <span className="sr-only">{text}</span>
       <span className="contents" aria-hidden="true">
         {words.map((word, index) => (
-          <span key={`${word}-${index}`} className="overflow-hidden pr-[0.22em]">
+          <span key={`${word}-${index}`} className="-my-[0.12em] overflow-hidden py-[0.12em] pr-[0.24em]">
           <motion.span
             className={cn('inline-block', emphasis && word.replace(/[.,¿?]/g, '') === emphasis.replace(/[.,¿?]/g, '') && 'font-extrabold italic text-brand')}
             initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 30, filter: 'blur(4px)' }}

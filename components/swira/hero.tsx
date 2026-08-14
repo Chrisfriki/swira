@@ -37,8 +37,8 @@ export function Hero() {
       <div className="relative mx-auto grid min-h-dvh max-w-[1600px] items-center gap-14 px-6 pt-32 pb-20 lg:grid-cols-[1.08fr_.92fr] lg:px-10 xl:px-16">
         <div className="relative z-10">
           <SectionLabel className="text-white/70">Agencia de marketing digital</SectionLabel>
-          <h1 className="mt-7 max-w-5xl font-heading text-[clamp(3rem,7.4vw,8rem)] font-extrabold leading-[.88] tracking-[-.06em] text-balance">
-            <WordReveal text="Digital que se ve. Ideas que mueven." emphasis="mueven" />
+          <h1 className="mt-7 max-w-5xl font-heading text-[clamp(2.85rem,6.3vw,7rem)] font-extrabold leading-[.92] tracking-[-.055em] text-balance">
+            <WordReveal text="Que te vean está bien. Que te elijan, mejor." emphasis="mejor" />
           </h1>
           <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }} className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">
             Estrategia, creatividad y tecnología para convertir atención en negocio.
