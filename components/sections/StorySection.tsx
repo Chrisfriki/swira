@@ -3,9 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { animate, AnimatePresence, motion, useInView } from 'framer-motion'
+import { animate, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from '@/components/swira/primitives'
 import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
@@ -16,13 +15,13 @@ const ACTS = [
     number: '01',
     title: 'Buen trabajo. Un perfil sin dirección.',
     text: 'Welding Systems ya hacía buenos trabajos y los subía a Instagram. Pero cada publicación iba por su cuenta: sin una línea visual, una intención clara ni una estrategia para convertir las visitas en consultas.',
-    image: '/casos/welding-perfil.png',
+    image: '/casos/welding-perfil-antiguo.png',
   },
   {
     number: '02',
     title: 'Una marca reconocible. Contenido con intención.',
     text: 'Creamos un logo minimalista, unificamos las portadas y cuidamos la producción de los vídeos. Ajustamos el nombre del perfil para facilitar las búsquedas y la descripción para explicar qué ofrecían. Cada pieza empezó a responder a una estrategia.',
-    image: '/casos/welding-contenido.png',
+    image: '/casos/welding-perfil.png',
   },
   {
     number: '03',
@@ -32,9 +31,9 @@ const ACTS = [
   },
 ] as const
 
-function StoryImage({ src, title, fillContainer = false }: { src: string; title: string; fillContainer?: boolean }) {
+function StoryImage({ src, title }: { src: string; title: string }) {
   if (src === 'captacion') return (
-    <div className={`${fillContainer ? 'size-full' : 'min-h-[440px]'} swira-atmosphere flex flex-col justify-center rounded-[var(--swira-card-radius)] border border-white/10 p-7 md:p-10`}>
+    <div className="swira-atmosphere rounded-[var(--swira-card-radius)] border border-white/10 p-7 md:p-10">
       <p className="mb-8 text-xs tracking-[.18em] text-white/60 uppercase">Una estrategia. Un siguiente paso.</p>
       <ol className="space-y-4">
         {[
@@ -45,12 +44,14 @@ function StoryImage({ src, title, fillContainer = false }: { src: string; title:
       </ol>
     </div>
   )
+  const oldProfile = src.includes('antiguo')
+  const profile = src.includes('perfil')
+  const width = oldProfile ? 1905 : profile ? 726 : 1438
+  const height = oldProfile ? 826 : profile ? 315 : 809
   return (
-    <figure className={`${fillContainer ? 'size-full' : 'aspect-[4/3]'} relative flex flex-col overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-white`}>
-      <div className="relative min-h-0 flex-1">
-        <Image src={`${basePath}${src}`} alt={`Perfil actual de Welding Systems: ${title}`} fill unoptimized sizes="(max-width: 1023px) 100vw, 50vw" className="object-contain" />
-      </div>
-      <figcaption className="shrink-0 border-t border-black/10 bg-white px-5 py-4 text-xs leading-relaxed text-neutral-600">{src.includes('perfil') ? 'El perfil actual: logo, nombre y descripción con una misma dirección.' : 'Portadas y contenidos actuales: una identidad visual coherente.'}</figcaption>
+    <figure className="min-w-0">
+      <Image src={`${basePath}${src}`} alt={`${oldProfile ? "Perfil antiguo" : profile ? "Perfil actual" : "Contenido actual"} de Welding Systems: ${title}`} width={width} height={height} unoptimized sizes="(max-width: 1023px) 100vw, 55vw" className="h-auto w-full rounded-[var(--swira-card-radius)] border border-white/15" />
+      <figcaption className="mt-3 text-xs leading-relaxed text-white/60">{oldProfile ? "Cómo empezamos: el perfil antes de renovar su identidad." : profile ? "El perfil actual: nuevo logo, nombre y descripción de servicios." : "Portadas y contenidos actuales: una identidad visual coherente."}</figcaption>
     </figure>
   )
 }
@@ -89,43 +90,9 @@ function ResultMetric({ periodo, animateValue = true }: { periodo?: string; anim
   )
 }
 
-function StaticStory({ periodo }: { periodo?: string }) {
-  return (
-    <div className="mt-14 grid gap-16">
-      {ACTS.map((act) => (
-        <article key={act.number} className="grid gap-7">
-          <StoryImage src={act.image} title={act.title} />
-          <div>
-            <p className="font-heading text-sm font-bold text-brand">ACTO {act.number}</p>
-            <h3 className="mt-3 font-heading text-3xl font-bold tracking-tight">{act.title}</h3>
-            <p className="mt-5 text-xl leading-relaxed text-white/70">{act.text}</p>
-          </div>
-        </article>
-      ))}
-      <article className="border-t border-white/10 pt-14">
-        <p className="font-heading text-sm font-bold text-brand">ACTO 04 · EL RESULTADO</p>
-        <ResultMetric periodo={periodo} animateValue={false} />
-      </article>
-    </div>
-  )
-}
-
 // El periodo es opcional: no mostrar un plazo hasta disponer del dato real.
 export function StorySection({ periodo }: { periodo?: string }) {
-  const [active, setActive] = useState(0)
-  const refs = useRef<Array<HTMLElement | null>>([])
   const reduceMotion = useHydratedReducedMotion()
-
-  useEffect(() => {
-    if (reduceMotion) return
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) setActive(Number((entry.target as HTMLElement).dataset.index))
-      }
-    }, { rootMargin: '-38% 0px -42% 0px' })
-    refs.current.forEach((node) => node && observer.observe(node))
-    return () => observer.disconnect()
-  }, [reduceMotion])
 
   return (
     <section id="historia" data-theme="dark" className="relative isolate overflow-hidden bg-ink px-6 py-24 text-white md:py-32 lg:px-10">
@@ -135,59 +102,25 @@ export function StorySection({ periodo }: { periodo?: string }) {
           Así lo hicimos con <em className="italic text-brand">Welding Systems</em>.
         </h2>
 
-        {reduceMotion ? <StaticStory periodo={periodo} /> : (
-          <>
-            <div className="mt-14 grid gap-16 lg:hidden">
-              {ACTS.map((act) => (
-                <article key={act.number} className="grid gap-7">
-                  <StoryImage src={act.image} title={act.title} />
-                  <div>
-                    <p className="font-heading text-sm font-bold text-brand">ACTO {act.number}</p>
-                    <h3 className="mt-3 font-heading text-3xl font-bold tracking-tight">{act.title}</h3>
-                    <p className="mt-5 text-xl leading-relaxed text-white/70"><WordReveal text={act.text} /></p>
-                  </div>
-                </article>
-              ))}
-              <article className="border-t border-white/10 pt-14">
-                <p className="font-heading text-sm font-bold text-brand">ACTO 04 · EL RESULTADO</p>
-                <ResultMetric periodo={periodo} />
-              </article>
-            </div>
-
-            <div className="relative mt-16 hidden grid-cols-[24px_minmax(0,1fr)_minmax(0,1fr)] gap-8 lg:grid">
-              <ol aria-label="Progreso de la historia" className="sticky top-[calc(var(--header-h)+32px)] flex h-[calc(100vh-var(--header-h)-64px)] flex-col items-center justify-center gap-5">
-                {[0, 1, 2, 3].map((index) => <li key={index} aria-current={active === index ? 'step' : undefined} className={`size-2.5 rounded-full border transition-colors duration-300 ${active === index ? 'border-brand bg-brand' : 'border-white/30 bg-transparent'}`}><span className="sr-only">Acto {index + 1}</span></li>)}
-              </ol>
-              <div className="sticky top-[calc(var(--header-h)+32px)] h-[calc(100vh-var(--header-h)-64px)] min-h-[560px] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-black">
-                <AnimatePresence mode="wait">
-                  {active < 3 ? (
-                    <motion.div key={ACTS[active].image} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="absolute inset-0">
-                      <StoryImage src={ACTS[active].image} title={ACTS[active].title} fillContainer />
-                    </motion.div>
-                  ) : (
-                    <motion.div key="result" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 flex items-center p-10 xl:p-14">
-                      <ResultMetric periodo={periodo} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+        <div className="mt-14 grid gap-16 md:gap-24">
+          {ACTS.map((act) => (
+            <article key={act.number} className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
+              <div className="grid min-w-0 gap-6">
+                <StoryImage src={act.image} title={act.title} />
+                {act.number === '02' && <StoryImage src="/casos/welding-contenido.png" title="Portadas con una misma dirección visual" />}
               </div>
               <div>
-                {ACTS.map((act, index) => (
-                  <article key={act.number} ref={(node) => { refs.current[index] = node }} data-index={index} className="flex min-h-[78vh] flex-col justify-center border-b border-white/10 py-20">
-                    <p className="font-heading text-sm font-bold text-brand">ACTO {act.number}</p>
-                    <h3 className="mt-4 font-heading text-4xl font-bold tracking-tight xl:text-5xl">{act.title}</h3>
-                    <p className="mt-6 max-w-xl text-2xl leading-relaxed text-white/70"><WordReveal text={act.text} /></p>
-                  </article>
-                ))}
-                <article ref={(node) => { refs.current[3] = node }} data-index={3} className="flex min-h-[78vh] flex-col justify-center py-20">
-                  <p className="font-heading text-sm font-bold text-brand">ACTO 04</p>
-                  <h3 className="mt-4 font-heading text-5xl font-bold tracking-tight">Una campaña que construye a largo plazo.</h3>
-                  <p className="mt-6 max-w-xl text-2xl leading-relaxed text-white/70"><WordReveal text="La campaña generó más de 100 contactos interesados. Con un perfil coherente y una estrategia sostenida, cada semana siguen llegando nuevo alcance y nuevos leads." /></p>
-                </article>
+                <p className="font-heading text-sm font-bold text-brand">ACTO {act.number}</p>
+                <h3 className="mt-4 font-heading text-3xl font-bold tracking-tight xl:text-4xl">{act.title}</h3>
+                <p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">{act.text}</p>
               </div>
-            </div>
-          </>
-        )}
+            </article>
+          ))}
+          <article className="grid items-center gap-8 border-t border-white/15 pt-12 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
+            <div className="swira-atmosphere rounded-[var(--swira-card-radius)] border border-white/15 p-7 md:p-10"><ResultMetric periodo={periodo} animateValue={!reduceMotion} /></div>
+            <div><p className="font-heading text-sm font-bold text-brand">ACTO 04 · EL RESULTADO</p><h3 className="mt-4 font-heading text-3xl font-bold tracking-tight xl:text-4xl">Una campaña que construye a largo plazo.</h3><p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">La campaña generó más de 100 contactos interesados. Con un perfil coherente y una estrategia sostenida, cada semana siguen llegando nuevo alcance y nuevos leads.</p></div>
+          </article>
+        </div>
         <div className="mt-16 border-t border-white/15 pt-12">
           <p className="max-w-3xl text-lg leading-relaxed text-white/75">El cambio fue más allá de una campaña: un perfil que transmite cuidado y profesionalidad, con nuevo alcance y nuevos contactos cada semana.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
