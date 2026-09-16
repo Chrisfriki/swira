@@ -15,7 +15,42 @@ const NAV_LINKS = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
+  const [compact, setCompact] = useState(false)
   const reduceMotion = useHydratedReducedMotion()
+
+  useEffect(() => {
+    if (open) return
+    let previousY = Math.max(0, window.scrollY)
+    let direction = 0
+    let travel = 0
+    let frame = 0
+
+    const update = () => {
+      frame = 0
+      const y = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight))
+      const delta = y - previousY
+      previousY = y
+      if (y < 80) {
+        setCompact(false)
+        travel = 0
+        return
+      }
+      if (!delta) return
+      const nextDirection = Math.sign(delta)
+      travel = nextDirection === direction ? travel + Math.abs(delta) : Math.abs(delta)
+      direction = nextDirection
+      if (travel >= 12) {
+        setCompact(direction > 0)
+        travel = 0
+      }
+    }
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(frame)
+    }
+  }, [open])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -23,8 +58,8 @@ export function SiteHeader() {
   }, [open])
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6">
-      <div className="pointer-events-auto mx-auto flex h-16 max-w-7xl items-center justify-between rounded-full border border-white/70 bg-white/90 px-5 text-ink shadow-[0_16px_50px_rgba(0,0,0,.12)] backdrop-blur-xl md:h-18 md:px-7">
+    <header data-compact={compact && !open} className="site-header pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6">
+      <div className="site-header-bar pointer-events-auto mx-auto flex h-16 max-w-7xl items-center justify-between rounded-full border px-5 text-ink md:h-18 md:px-7">
         <Link href="/" className="font-heading text-2xl font-extrabold lowercase tracking-tight">swira<span className="text-brand">.</span></Link>
         <nav aria-label="Navegación principal" className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => <Link key={link.href} href={link.href} className="text-xs font-semibold tracking-[.08em] uppercase transition-colors hover:text-brand">{link.label}</Link>)}
