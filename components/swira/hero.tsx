@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowDown, ArrowUpRight, Code2, MousePointer2, Sparkles } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, ShieldCheck, MousePointer2, Users } from 'lucide-react'
 import { ImageReveal, WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from './primitives'
 import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
@@ -51,17 +51,18 @@ export function Hero() {
             <div className="relative col-span-2 flex min-h-72 flex-col overflow-hidden rounded-[1.4rem] bg-[#0c1224] p-6 sm:min-h-88 sm:p-7">
               <div aria-hidden="true" className="absolute -top-24 -right-16 size-80 rounded-full bg-blue-500/50 blur-3xl" />
               <div aria-hidden="true" className="absolute -bottom-20 left-10 size-60 rounded-full bg-cyan-400/25 blur-3xl" />
-              <p className="relative text-xs tracking-[.2em] text-white/65 uppercase">Experiencia digital</p>
-              <p className="relative mt-5 max-w-sm font-heading text-4xl font-bold leading-tight sm:text-5xl">Una presencia imposible de ignorar.</p>
-              <MousePointer2 aria-hidden="true" className="relative mt-8 ml-auto size-9 text-brand" />
+              <p className="relative text-xs tracking-[.2em] text-white/65 uppercase">De la atención al negocio</p>
+              <p className="relative mt-5 max-w-md font-heading text-[clamp(1.5rem,3.2vw,3rem)] font-bold leading-tight">Más consultas. Más oportunidades de venta.</p>
+              <p className="relative mt-5 max-w-sm text-sm leading-relaxed text-white/75">Contenido y campañas con un siguiente paso claro: que te contacten.</p>
+              <MousePointer2 aria-hidden="true" className="relative mt-5 ml-auto size-8 text-brand" />
             </div>
             <div className="flex min-h-52 flex-col justify-between rounded-[1.4rem] bg-[#dfff42] p-5 text-ink sm:min-h-56 sm:p-6">
-              <Sparkles aria-hidden="true" className="size-7" />
-              <div className="mt-7"><p className="font-heading text-2xl font-bold sm:text-3xl">Ideas que mueven.</p><p className="mt-2 text-sm">Estrategia para crecer.</p></div>
+              <Users aria-hidden="true" className="size-7" />
+              <div className="mt-7"><p className="font-heading text-4xl font-extrabold sm:text-5xl">+100</p><p className="mt-2 text-sm">Contactos interesados en pérgolas para Welding Systems.</p><Link href="#historia" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-4">Así lo conseguimos <ArrowUpRight className="size-4" aria-hidden="true" /></Link></div>
             </div>
-            <div className="flex min-h-52 flex-col justify-between rounded-[1.4rem] bg-white p-5 text-ink sm:min-h-56 sm:p-6">
-              <Code2 aria-hidden="true" className="size-7 text-blue-600" />
-              <div className="mt-7"><p className="font-heading text-2xl font-bold sm:text-3xl">Diseño + código</p><p className="mt-2 text-sm text-neutral-600">Todo bajo el mismo techo.</p></div>
+            <div className="flex min-h-52 flex-col justify-between rounded-[1.4rem] bg-white p-4 text-ink sm:min-h-56 sm:p-6">
+              <ShieldCheck aria-hidden="true" className="size-7 text-blue-600" />
+              <div className="mt-7"><p className="font-heading text-lg font-bold sm:text-3xl">Una marca que da confianza.</p><p className="mt-2 text-sm text-neutral-600">Una imagen cuidada para que te tomen en serio.</p></div>
             </div>
           </div>
         </ImageReveal>

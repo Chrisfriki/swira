@@ -323,3 +323,5 @@
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header-bar { background: rgb(247 249 252 / 96%); }
 }
+
+.animate-swira-logos-right { animation-direction: reverse; }

@@ -14,37 +14,44 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 const ACTS = [
   {
     number: '01',
-    title: 'El punto de partida',
-    text: 'Welding Systems tenía producto y tenía mercado. Lo que no tenía era forma de llegar a él.',
-    image: '/casos/welding-01.jpg',
+    title: 'Buen trabajo. Un perfil sin dirección.',
+    text: 'Welding Systems ya hacía buenos trabajos y los subía a Instagram. Pero cada publicación iba por su cuenta: sin una línea visual, una intención clara ni una estrategia para convertir las visitas en consultas.',
+    image: '/casos/welding-perfil.png',
   },
   {
     number: '02',
-    title: 'Lo primero: las redes',
-    text: 'Reconstruimos sus redes sociales. Contenido con criterio, publicado con constancia, hablándole a un cliente concreto y no a todo el mundo.',
-    image: '/casos/welding-02.jpg',
+    title: 'Una marca reconocible. Contenido con intención.',
+    text: 'Creamos un logo minimalista, unificamos las portadas y cuidamos la producción de los vídeos. Ajustamos el nombre del perfil para facilitar las búsquedas y la descripción para explicar qué ofrecían. Cada pieza empezó a responder a una estrategia.',
+    image: '/casos/welding-contenido.png',
   },
   {
     number: '03',
-    title: 'Y luego lo conectamos',
-    text: 'Detrás montamos un embudo automatizado. Cada interesado entraba en un sistema que lo cualificaba solo, sin que nadie moviera un dedo.',
-    image: '/casos/welding-03.jpg',
+    title: 'Del interés por una pérgola a una llamada.',
+    text: 'Lanzamos una estrategia de temporada centrada en pérgolas. Conectamos el contenido con ManyChat y Google Forms para recoger los datos de las personas interesadas y facilitar el siguiente paso: llamar y agendar una cita.',
+    image: 'captacion',
   },
 ] as const
 
 function StoryImage({ src, title, fillContainer = false }: { src: string; title: string; fillContainer?: boolean }) {
-  return (
-    <div className={fillContainer ? 'relative size-full overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-black' : 'relative aspect-[4/3] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-black'}>
-      <Image
-        src={`${basePath}${src}`}
-        alt={`Imagen provisional del caso Welding Systems: ${title}`}
-        fill
-        unoptimized
-        sizes="(max-width: 1023px) 100vw, 50vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+  if (src === 'captacion') return (
+    <div className={`${fillContainer ? 'size-full' : 'min-h-[440px]'} swira-atmosphere flex flex-col justify-center rounded-[var(--swira-card-radius)] border border-white/10 p-7 md:p-10`}>
+      <p className="mb-8 text-xs tracking-[.18em] text-white/60 uppercase">Una estrategia. Un siguiente paso.</p>
+      <ol className="space-y-4">
+        {[
+          ['01', 'Despertar interés', 'Vídeos de pérgolas con una estrategia de temporada.'],
+          ['02', 'Recoger el contacto', 'ManyChat y Google Forms para pasar del interés a los datos de contacto.'],
+          ['03', 'Abrir una conversación', 'Llamar a las personas interesadas y agendar citas.'],
+        ].map(([number, heading, copy]) => <li key={number} className="rounded-2xl border border-white/15 bg-white/5 p-5"><span className="text-xs font-bold text-brand">{number}</span><p className="mt-2 font-heading text-xl font-bold">{heading}</p><p className="mt-2 text-sm leading-relaxed text-white/70">{copy}</p></li>)}
+      </ol>
     </div>
+  )
+  return (
+    <figure className={`${fillContainer ? 'size-full' : 'aspect-[4/3]'} relative flex flex-col overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-white`}>
+      <div className="relative min-h-0 flex-1">
+        <Image src={`${basePath}${src}`} alt={`Perfil actual de Welding Systems: ${title}`} fill unoptimized sizes="(max-width: 1023px) 100vw, 50vw" className="object-contain" />
+      </div>
+      <figcaption className="shrink-0 border-t border-black/10 bg-white px-5 py-4 text-xs leading-relaxed text-neutral-600">{src.includes('perfil') ? 'El perfil actual: logo, nombre y descripción con una misma dirección.' : 'Portadas y contenidos actuales: una identidad visual coherente.'}</figcaption>
+    </figure>
   )
 }
 
@@ -70,13 +77,13 @@ function ResultMetric({ periodo, animateValue = true }: { periodo?: string; anim
       </p>
       {periodo ? <p className="mt-1 font-heading text-2xl font-bold text-white">leads en {periodo}</p> : null}
       <p className="mt-4 max-w-md font-heading text-2xl font-bold leading-tight text-white md:text-3xl">
-        leads cualificados listos para llamar
+        contactos interesados en pérgolas
       </p>
       <p className="mt-5 max-w-md leading-relaxed text-white/55">
-        Ticket medio del cliente: 7.000 €. Échale la cuenta.
+        Más de 100 oportunidades de llamar y agendar citas a partir de una estrategia de temporada.
       </p>
       <Link href="#contacto" className="mt-8 inline-flex items-center gap-2 font-medium text-white underline decoration-brand decoration-2 underline-offset-4 hover:text-brand">
-        Ver el caso completo <ArrowUpRight className="size-4" aria-hidden="true" />
+        Quiero una estrategia para mi negocio <ArrowUpRight className="size-4" aria-hidden="true" />
       </Link>
     </div>
   )
@@ -103,8 +110,7 @@ function StaticStory({ periodo }: { periodo?: string }) {
   )
 }
 
-// TODO: confirmar con el cliente (1) permiso de uso de marca y datos,
-// (2) el plazo real en el que se consiguieron los leads.
+// El periodo es opcional: no mostrar un plazo hasta disponer del dato real.
 export function StorySection({ periodo }: { periodo?: string }) {
   const [active, setActive] = useState(0)
   const refs = useRef<Array<HTMLElement | null>>([])
@@ -175,13 +181,23 @@ export function StorySection({ periodo }: { periodo?: string }) {
                 ))}
                 <article ref={(node) => { refs.current[3] = node }} data-index={3} className="flex min-h-[78vh] flex-col justify-center py-20">
                   <p className="font-heading text-sm font-bold text-brand">ACTO 04</p>
-                  <h3 className="mt-4 font-heading text-5xl font-bold tracking-tight">El resultado</h3>
-                  <p className="mt-6 max-w-xl text-2xl leading-relaxed text-white/70"><WordReveal text="+100 leads cualificados listos para llamar." /></p>
+                  <h3 className="mt-4 font-heading text-5xl font-bold tracking-tight">Una campaña que construye a largo plazo.</h3>
+                  <p className="mt-6 max-w-xl text-2xl leading-relaxed text-white/70"><WordReveal text="La campaña generó más de 100 contactos interesados. Con un perfil coherente y una estrategia sostenida, cada semana siguen llegando nuevo alcance y nuevos leads." /></p>
                 </article>
               </div>
             </div>
           </>
         )}
+        <div className="mt-16 border-t border-white/15 pt-12">
+          <p className="max-w-3xl text-lg leading-relaxed text-white/75">El cambio fue más allá de una campaña: un perfil que transmite cuidado y profesionalidad, con nuevo alcance y nuevos contactos cada semana.</p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              ['Inversión con sentido', 'Conectar el trabajo de marketing con consultas y oportunidades de conseguir nuevos trabajos.'],
+              ['Una marca que se reconoce', 'Logo, portadas, vídeos y perfil con una misma dirección visual.'],
+              ['Una base para seguir creciendo', 'Una estrategia sostenida que sigue atrayendo personas interesadas semana tras semana.'],
+            ].map(([title, copy]) => <article key={title} className="rounded-[var(--swira-card-radius)] border border-white/15 bg-white/5 p-7"><h3 className="font-heading text-2xl font-bold">{title}</h3><p className="mt-4 leading-relaxed text-white/70">{copy}</p></article>)}
+          </div>
+        </div>
       </div>
     </section>
   )

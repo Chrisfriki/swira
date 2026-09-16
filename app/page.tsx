@@ -12,7 +12,6 @@ import { MidCta } from '@/components/sections/MidCta'
 import { ProcessSection } from '@/components/sections/ProcessSection'
 import { TeamSection } from '@/components/sections/TeamSection'
 import { FaqSection } from '@/components/sections/FaqSection'
-import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
 import { BlogSection } from '@/components/sections/BlogSection'
 import { StorySection } from '@/components/sections/StorySection'
 
@@ -21,7 +20,6 @@ export default function Page() {
     <><SiteHeader /><main><Hero /><ReelsSection /><ClientLogos /><PainSection /><StorySection /><MidCta />
       <ServicesSection />
       <WorkSection />
-      <BeforeAfterSection />
       <ProcessSection /><Results /><TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
 }
