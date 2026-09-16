@@ -1,35 +1,34 @@
-import { ImageReveal, WordReveal } from '@/components/motion/motion-primitives'
+import { Camera, MessageCircle, MousePointer2, Search } from 'lucide-react'
+import { WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from '@/components/swira/primitives'
 
 const PAINS = [
-  { text: 'Publicas cada semana y no entra ni un cliente nuevo.', background: 'radial-gradient(circle at 50% 34%, #00ce63 0 18%, transparent 18.3%), linear-gradient(145deg, #f6f6f6 0 48%, #d7d7d7 48% 100%)' },
-  { text: 'Tu web es bonita, pero no vende.', background: 'linear-gradient(45deg, #05070d 0 28%, transparent 28%), linear-gradient(135deg, transparent 0 58%, #00ce63 58% 78%, transparent 78%), #dedede' },
-  { text: 'Nadie te encuentra cuando te buscan en Google.', background: 'radial-gradient(circle at 25% 30%, #05070d 0 11%, transparent 11.3%), radial-gradient(circle at 72% 56%, #00ce63 0 22%, transparent 22.3%), #efefef' },
-  { text: 'Tus fotos no están a la altura de tu producto.', background: 'linear-gradient(90deg, #05070d 0 14%, transparent 14% 86%, #05070d 86%), linear-gradient(#eeeeee 0 24%, #00ce63 24% 74%, #eeeeee 74%)' },
+  { text: 'Publicas cada semana y no entra ni un cliente nuevo.', label: 'Redes sociales', icon: MessageCircle },
+  { text: 'Tu web es bonita, pero no vende.', label: 'Conversión web', icon: MousePointer2 },
+  { text: 'Nadie te encuentra cuando te buscan en Google.', label: 'Visibilidad', icon: Search },
+  { text: 'Tus fotos no están a la altura de tu producto.', label: 'Imagen de marca', icon: Camera },
 ]
 
 export function PainSection() {
   return (
-    <section data-theme="light" className="relative isolate z-10 overflow-hidden bg-paper pt-24 md:pt-32">
+    <section data-theme="light" className="relative isolate bg-paper py-20 text-ink md:py-24">
       <div className="swira-container">
         <SectionLabel>El punto de partida</SectionLabel>
-        <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight text-ink">
+        <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight">
           <WordReveal text="¿Te está pasando esto?" emphasis="esto" />
         </h2>
-      </div>
-      <div className="swira-container mt-14 mb-16 flex flex-col gap-4 overflow-hidden md:h-[68vh] md:min-h-[560px] md:flex-row">
-        {PAINS.map((pain, index) => (
-          <ImageReveal key={pain.text} delay={index * .08} className="group relative min-h-[360px] flex-1 overflow-hidden rounded-[var(--swira-card-radius)] transition-[flex] duration-700 ease-[cubic-bezier(.16,1,.3,1)] hover:flex-[1.7] md:min-h-0">
-            <article className="absolute inset-0">
-              <div aria-hidden="true" className="absolute inset-0 scale-100 grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" style={{ background: pain.background }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-7 text-white lg:p-9">
-                <span className="font-heading text-sm font-bold text-brand">0{index + 1}</span>
-                <h3 className="mt-3 max-w-sm font-heading text-2xl font-bold leading-tight text-balance lg:text-3xl">{pain.text}</h3>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 md:mt-12">
+          {PAINS.map(({ text, label, icon: Icon }, index) => (
+            <article key={label} className="swira-panel flex flex-col bg-white p-6 md:p-7">
+              <div className="flex items-center justify-between gap-4">
+                <span className="flex size-14 items-center justify-center rounded-2xl border border-brand/15 bg-brand/10 text-deep-700"><Icon className="size-7" strokeWidth={1.75} aria-hidden="true" /></span>
+                <span aria-hidden="true" className="font-heading text-xs font-bold tabular-nums text-neutral-400">0{index + 1}</span>
               </div>
+              <h3 className="mt-6 font-heading text-xl font-bold leading-snug tracking-tight md:text-2xl">{text}</h3>
+              <p className="mt-auto pt-6 text-xs font-medium tracking-[.1em] text-neutral-500 uppercase">{label}</p>
             </article>
-          </ImageReveal>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
