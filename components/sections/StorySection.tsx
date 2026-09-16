@@ -102,23 +102,29 @@ export function StorySection({ periodo }: { periodo?: string }) {
           Así lo hicimos con <em className="italic text-brand">Welding Systems</em>.
         </h2>
 
-        <div className="mt-14 grid gap-16 md:gap-24">
+        <div className="mt-14 grid gap-10 md:gap-16">
           {ACTS.map((act) => (
-            <article key={act.number} className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
-              <div className="grid min-w-0 gap-6">
+            <article key={act.number} aria-labelledby={`welding-act-${act.number}`} className={`rounded-[2rem] border p-5 md:p-9 lg:p-10 ${act.number === '02' ? 'border-brand/30 bg-deep-900' : 'border-white/15 bg-white/[.035]'}`}>
+              <div className="mb-7 flex flex-wrap items-center gap-4 border-b border-white/15 pb-6">
+                <span className={`rounded-full px-4 py-2 text-xs font-bold tracking-[.12em] ${act.number === '02' ? 'bg-brand text-ink' : 'bg-white/10 text-white'}`}>ACTO {act.number}</span>
+                <p className="font-heading text-xl font-bold md:text-2xl">{act.number === '01' ? 'Antes · El punto de partida' : act.number === '02' ? 'Después · La nueva identidad' : 'La estrategia · Del interés al contacto'}</p>
+              </div>
+              <div className="grid items-start gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
                 <StoryImage src={act.image} title={act.title} />
-                {act.number === '02' && <StoryImage src="/casos/welding-contenido.png" title="Portadas con una misma dirección visual" />}
+                <div>
+                  <h3 id={`welding-act-${act.number}`} className="font-heading text-3xl font-bold tracking-tight xl:text-4xl">{act.title}</h3>
+                  <p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">{act.text}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-heading text-sm font-bold text-brand">ACTO {act.number}</p>
-                <h3 className="mt-4 font-heading text-3xl font-bold tracking-tight xl:text-4xl">{act.title}</h3>
-                <p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">{act.text}</p>
-              </div>
+              {act.number === '02' && <div className="mt-8 border-t border-white/15 pt-7"><p className="mb-5 text-sm font-semibold text-white/75">La misma identidad, en cada publicación.</p><div className="max-w-4xl"><StoryImage src="/casos/welding-contenido.png" title="Portadas con una misma dirección visual" /></div></div>}
             </article>
           ))}
-          <article className="grid items-center gap-8 border-t border-white/15 pt-12 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
-            <div className="swira-atmosphere rounded-[var(--swira-card-radius)] border border-white/15 p-7 md:p-10"><ResultMetric periodo={periodo} animateValue={!reduceMotion} /></div>
-            <div><p className="font-heading text-sm font-bold text-brand">ACTO 04 · EL RESULTADO</p><h3 className="mt-4 font-heading text-3xl font-bold tracking-tight xl:text-4xl">Una campaña que construye a largo plazo.</h3><p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">La campaña generó más de 100 contactos interesados. Con un perfil coherente y una estrategia sostenida, cada semana siguen llegando nuevo alcance y nuevos leads.</p></div>
+          <article className="rounded-[2rem] border border-white/15 bg-white/[.035] p-5 md:p-9 lg:p-10">
+            <div className="mb-7 flex flex-wrap items-center gap-4 border-b border-white/15 pb-6"><span className="rounded-full bg-brand px-4 py-2 text-xs font-bold tracking-[.12em] text-ink">ACTO 04</span><p className="font-heading text-xl font-bold md:text-2xl">El resultado · Una base para crecer</p></div>
+            <div className="grid items-start gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
+              <div className="swira-atmosphere rounded-[var(--swira-card-radius)] border border-white/15 p-7 md:p-10"><ResultMetric periodo={periodo} animateValue={!reduceMotion} /></div>
+              <div><h3 className="font-heading text-3xl font-bold tracking-tight xl:text-4xl">Una campaña que construye a largo plazo.</h3><p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">La campaña generó más de 100 contactos interesados. Con un perfil coherente y una estrategia sostenida, cada semana siguen llegando nuevo alcance y nuevos leads.</p></div>
+            </div>
           </article>
         </div>
         <div className="mt-16 border-t border-white/15 pt-12">
