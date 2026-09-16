@@ -21,7 +21,7 @@ const ACTS = [
     number: '02',
     title: 'Una marca reconocible. Contenido con intención.',
     text: 'Creamos un logo minimalista, unificamos las portadas y cuidamos la producción de los vídeos. Ajustamos el nombre del perfil para facilitar las búsquedas y la descripción para explicar qué ofrecían. Cada pieza empezó a responder a una estrategia.',
-    image: '/casos/welding-perfil-limpio.png',
+    image: '/casos/welding-perfil-completo.png',
   },
   {
     number: '03',
@@ -49,10 +49,11 @@ function ActFrame({ children, className, labelledBy }: { children: React.ReactNo
 function StoryImage({ src, title }: { src: string; title: string }) {
   const oldProfile = src.includes('antiguo')
   const profile = src.includes('perfil')
-  const width = profile ? 1905 : 1438
-  const height = profile ? 826 : 809
+  const complete = src.includes('completo')
+  const width = complete ? 1036 : profile ? 1905 : 1438
+  const height = complete ? 847 : profile ? 826 : 809
   return (
-    <figure className="min-w-0">
+    <figure className="mx-auto w-full min-w-0 max-w-lg">
       <Image src={`${basePath}${src}`} alt={`${oldProfile ? "Perfil antiguo" : profile ? "Perfil actual" : "Contenido actual"} de Welding Systems: ${title}`} width={width} height={height} unoptimized sizes="(max-width: 1023px) 100vw, 55vw" className="h-auto w-full rounded-[var(--swira-card-radius)] border border-white/15" />
       <figcaption className="mt-3 text-xs leading-relaxed text-white/60">{oldProfile ? "Cómo empezamos: el perfil antes de renovar su identidad." : profile ? "El perfil actual: nuevo logo, nombre y descripción de servicios." : "Portadas y contenidos actuales: una identidad visual coherente."}</figcaption>
     </figure>
@@ -73,14 +74,14 @@ function AutomationEvidence() {
         <div><p className="text-xs font-bold tracking-wider text-brand">PASO 02 · MEDIR LA AUTOMATIZACIÓN</p>
         <h4 className="mt-3 font-heading text-2xl font-bold md:text-3xl">Del mensaje al clic: un recorrido que podemos medir.</h4>
         <p className="mt-4 max-w-4xl text-lg leading-relaxed text-white/70">En esta automatización, ManyChat registra 112 envíos, 107 clics y un 96 % de CTR. Son las métricas de los mensajes y sus enlaces; los contactos que completan el formulario se recogen después en la hoja de seguimiento.</p>
-        </div><figure className="mx-auto w-full max-w-xl"><a href={`${basePath}/casos/welding-automatizacion.png`} target="_blank" rel="noreferrer" aria-label="Ampliar captura de estadísticas de ManyChat" className="block rounded-2xl"><Image src={`${basePath}/casos/welding-automatizacion.png`} alt="Panel de ManyChat: 112 envíos, 107 clics y 96 por ciento de CTR" width={1704} height={666} unoptimized className="h-auto w-full rounded-2xl border border-white/15" /></a><figcaption className="mt-3 text-xs text-white/60">Estadísticas de esta automatización. Pulsa la imagen para ampliarla.</figcaption></figure>
+        </div><figure className="mx-auto w-full max-w-xl"><Image src={`${basePath}/casos/welding-automatizacion.png`} alt="Panel de ManyChat: 112 envíos, 107 clics y 96 por ciento de CTR" width={1704} height={666} unoptimized className="h-auto w-full rounded-2xl border border-white/15" /><figcaption className="mt-3 text-xs text-white/60">Estadísticas de esta automatización.</figcaption></figure>
       </div>
       <div className="grid items-center gap-7 border-t border-white/15 pt-8 lg:grid-cols-2">
         <div><p className="text-xs font-bold tracking-wider text-brand">PASO 03 · ORGANIZAR EL SEGUIMIENTO</p>
         <h4 className="mt-3 font-heading text-2xl font-bold md:text-3xl">Un Excel a medida, listo para trabajar cada contacto.</h4>
         <p className="mt-4 max-w-4xl text-lg leading-relaxed text-white/70">También diseñamos y preparamos la hoja para el cliente, adaptada a la información que necesita su negocio. En Welding organizamos los datos del formulario por localidad, tipo de estructura, urgencia y fecha y hora preferidas para la llamada. Así el equipo puede priorizar a quién llamar y preparar cada conversación.</p>
         <div className="mt-6 flex flex-wrap gap-2">{['Localidad', 'Trabajo solicitado', 'Urgencia', 'Fecha y hora de llamada'].map((label) => <span key={label} className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white/80">{label}</span>)}</div>
-        </div><figure className="mx-auto w-full max-w-xl"><a href={`${basePath}/casos/welding-seguimiento-anonimizado.png`} target="_blank" rel="noreferrer" aria-label="Ampliar hoja de seguimiento con datos personales ocultos" className="block rounded-2xl"><Image src={`${basePath}/casos/welding-seguimiento-anonimizado.png`} alt="Hoja de seguimiento de contactos con nombres y teléfonos ocultos; muestra localidades, trabajos, fechas y urgencia" width={1786} height={881} unoptimized className="h-auto w-full rounded-2xl border border-white/15" /></a><figcaption className="mt-3 text-xs text-white/60">Hoja preparada para Welding Systems. Nombres y teléfonos ocultos por privacidad. Pulsa para ampliar.</figcaption></figure>
+        </div><figure className="mx-auto w-full max-w-xl"><Image src={`${basePath}/casos/welding-seguimiento-anonimizado.png`} alt="Hoja de seguimiento de contactos con nombres y teléfonos ocultos; muestra localidades, trabajos, fechas y urgencia" width={1786} height={881} unoptimized className="h-auto w-full rounded-2xl border border-white/15" /><figcaption className="mt-3 text-xs text-white/60">Hoja preparada para Welding Systems. Nombres y teléfonos ocultos por privacidad.</figcaption></figure>
       </div>
     </div>
   )
@@ -120,6 +121,27 @@ function ResultMetric({ periodo, animateValue = true }: { periodo?: string; anim
   )
 }
 
+function RevenuePotential() {
+  const [sales, setSales] = useState(10)
+  const revenue = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(sales * 7500)
+  return (
+    <div>
+      <p className="text-xs font-bold tracking-widest text-brand uppercase">El potencial detrás de los contactos</p>
+      <h3 className="mt-4 font-heading text-3xl font-bold tracking-tight">¿Y si 10 de cada 100 terminan comprando?</h3>
+      <p className="mt-4 leading-relaxed text-white/70">Con un importe supuesto de 7.500 € por pérgola, 10 ventas representarían 75.000 € de facturación potencial.</p>
+      <div className="mt-6 rounded-3xl border border-brand/30 bg-brand/5 p-5 sm:p-6">
+        <p className="text-xs tracking-wider text-white/65 uppercase">Simula un escenario</p>
+        <output htmlFor="welding-sales" aria-live="polite" className="mt-3 block font-heading text-4xl font-extrabold tracking-tight text-brand sm:text-5xl">{revenue}</output>
+        <p className="mt-2 text-sm text-white/70">{sales} ventas × 7.500 € por pérgola</p>
+        <label htmlFor="welding-sales" className="mt-6 block text-sm font-medium">Ventas sobre una base de 100 contactos: {sales}</label>
+        <input id="welding-sales" type="range" min="1" max="100" step="1" value={sales} onChange={(event) => setSales(Number(event.target.value))} className="mt-3 h-6 w-full cursor-pointer accent-brand" />
+        <div className="flex justify-between text-xs text-white/50"><span>1 venta</span><span>100 ventas</span></div>
+      </div>
+      <p className="mt-4 text-xs leading-relaxed text-white/55">Proyección ilustrativa, no facturación obtenida ni garantizada. Tomamos 100 de los más de 100 contactos generados y un importe orientativo de 7.500 € (rango propuesto: 7.000–8.000 €). El resultado depende de las ventas cerradas y del importe de cada proyecto; no representa beneficio.</p>
+    </div>
+  )
+}
+
 // El periodo es opcional: no mostrar un plazo hasta disponer del dato real.
 export function StorySection({ periodo }: { periodo?: string }) {
   const reduceMotion = useHydratedReducedMotion()
@@ -139,7 +161,7 @@ export function StorySection({ periodo }: { periodo?: string }) {
                 <span className={`rounded-full px-4 py-2 text-xs font-bold tracking-[.12em] ${act.number === '02' ? 'bg-brand text-ink' : 'bg-white/10 text-white'}`}>ACTO {act.number}</span>
                 <p className="font-heading text-xl font-bold md:text-2xl">{act.number === '01' ? 'Antes · El punto de partida' : act.number === '02' ? 'Después · La nueva identidad' : 'La estrategia · Del interés al contacto'}</p>
               </div>
-              <div className={act.number === '03' ? 'max-w-4xl' : 'grid items-start gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12'}>
+              <div className={act.number === '03' ? 'max-w-4xl' : 'grid items-center gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12'}>
                 {act.number !== '03' && <StoryImage src={act.image} title={act.title} />}
                 <div>
                   <h3 id={`welding-act-${act.number}`} className="font-heading text-3xl font-bold tracking-tight xl:text-4xl">{act.title}</h3>
@@ -147,27 +169,17 @@ export function StorySection({ periodo }: { periodo?: string }) {
                 </div>
               </div>
               {act.number === '03' && <AutomationEvidence />}
-              {act.number === '02' && <div className="mt-8 border-t border-white/15 pt-7"><p className="mb-5 text-sm font-semibold text-white/75">La misma identidad, en cada publicación.</p><div className="max-w-xl"><StoryImage src="/casos/welding-contenido.png" title="Portadas con una misma dirección visual" /></div></div>}
             </ActFrame>
           ))}
           <ActFrame className="rounded-[2rem] border border-white/15 bg-white/[.035] p-5 md:p-9 lg:p-10">
             <div className="mb-7 flex flex-wrap items-center gap-4 border-b border-white/15 pb-6"><span className="rounded-full bg-brand px-4 py-2 text-xs font-bold tracking-[.12em] text-ink">ACTO 04</span><p className="font-heading text-xl font-bold md:text-2xl">El resultado · Una base para crecer</p></div>
             <div className="grid items-start gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
               <div className="swira-atmosphere rounded-[var(--swira-card-radius)] border border-white/15 p-7 md:p-10"><ResultMetric periodo={periodo} animateValue={!reduceMotion} /></div>
-              <div><h3 className="font-heading text-3xl font-bold tracking-tight xl:text-4xl">Una campaña que construye a largo plazo.</h3><p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">La campaña generó más de 100 contactos interesados. Con un perfil coherente y una estrategia sostenida, cada semana siguen llegando nuevo alcance y nuevos leads.</p></div>
+              <RevenuePotential />
             </div>
           </ActFrame>
         </div>
-        <div className="mt-16 border-t border-white/15 pt-12">
-          <p className="max-w-3xl text-lg leading-relaxed text-white/75">El cambio fue más allá de una campaña: un perfil que transmite cuidado y profesionalidad, con nuevo alcance y nuevos contactos cada semana.</p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              ['Inversión con sentido', 'Conectar el trabajo de marketing con consultas y oportunidades de conseguir nuevos trabajos.'],
-              ['Una marca que se reconoce', 'Logo, portadas, vídeos y perfil con una misma dirección visual.'],
-              ['Una base para seguir creciendo', 'Una estrategia sostenida que sigue atrayendo personas interesadas semana tras semana.'],
-            ].map(([title, copy]) => <article key={title} className="rounded-[var(--swira-card-radius)] border border-white/15 bg-white/5 p-7"><h3 className="font-heading text-2xl font-bold">{title}</h3><p className="mt-4 leading-relaxed text-white/70">{copy}</p></article>)}
-          </div>
-        </div>
+
       </div>
     </section>
   )

@@ -9,7 +9,6 @@ import { ServicesSection } from '@/components/sections/ServicesSection'
 import { WorkSection } from '@/components/sections/WorkSection'
 import { PainSection } from '@/components/sections/PainSection'
 import { MidCta } from '@/components/sections/MidCta'
-import { ProcessSection } from '@/components/sections/ProcessSection'
 import { TeamSection } from '@/components/sections/TeamSection'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { BlogSection } from '@/components/sections/BlogSection'
@@ -20,6 +19,6 @@ export default function Page() {
     <><SiteHeader /><main><Hero /><ReelsSection /><ClientLogos /><PainSection /><StorySection /><MidCta />
       <ServicesSection />
       <WorkSection />
-      <ProcessSection /><Results /><TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
+      <Results /><TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
 }
