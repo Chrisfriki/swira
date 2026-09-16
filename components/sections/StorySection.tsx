@@ -32,18 +32,6 @@ const ACTS = [
 ] as const
 
 function StoryImage({ src, title }: { src: string; title: string }) {
-  if (src === 'captacion') return (
-    <div className="swira-atmosphere rounded-[var(--swira-card-radius)] border border-white/10 p-7 md:p-10">
-      <p className="mb-8 text-xs tracking-[.18em] text-white/60 uppercase">Una estrategia. Un siguiente paso.</p>
-      <ol className="space-y-4">
-        {[
-          ['01', 'Despertar interés', 'Vídeos de pérgolas con una estrategia de temporada.'],
-          ['02', 'Recoger el contacto', 'ManyChat y Google Forms para pasar del interés a los datos de contacto.'],
-          ['03', 'Abrir una conversación', 'Llamar a las personas interesadas y agendar citas.'],
-        ].map(([number, heading, copy]) => <li key={number} className="rounded-2xl border border-white/15 bg-white/5 p-5"><span className="text-xs font-bold text-brand">{number}</span><p className="mt-2 font-heading text-xl font-bold">{heading}</p><p className="mt-2 text-sm leading-relaxed text-white/70">{copy}</p></li>)}
-      </ol>
-    </div>
-  )
   const oldProfile = src.includes('antiguo')
   const profile = src.includes('perfil')
   const width = oldProfile ? 1905 : profile ? 726 : 1438
@@ -53,6 +41,33 @@ function StoryImage({ src, title }: { src: string; title: string }) {
       <Image src={`${basePath}${src}`} alt={`${oldProfile ? "Perfil antiguo" : profile ? "Perfil actual" : "Contenido actual"} de Welding Systems: ${title}`} width={width} height={height} unoptimized sizes="(max-width: 1023px) 100vw, 55vw" className="h-auto w-full rounded-[var(--swira-card-radius)] border border-white/15" />
       <figcaption className="mt-3 text-xs leading-relaxed text-white/60">{oldProfile ? "Cómo empezamos: el perfil antes de renovar su identidad." : profile ? "El perfil actual: nuevo logo, nombre y descripción de servicios." : "Portadas y contenidos actuales: una identidad visual coherente."}</figcaption>
     </figure>
+  )
+}
+
+function AutomationEvidence() {
+  return (
+    <div className="mt-10 grid gap-10">
+      <div className="grid items-center gap-8 border-t border-white/15 pt-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-12">
+        <figure className="mx-auto w-full max-w-sm">
+          <Image src={`${basePath}/casos/welding-comentarios.png`} alt="Comentarios de personas interesadas que escriben Pérgola en Instagram" width={497} height={596} unoptimized className="h-auto w-full rounded-2xl" />
+          <figcaption className="mt-3 text-xs text-white/60">El interés empieza en los comentarios del reel.</figcaption>
+        </figure>
+        <div><p className="text-xs font-bold tracking-wider text-brand">PASO 01 · ACTIVAR LA CONVERSACIÓN</p><h4 className="mt-3 font-heading text-2xl font-bold md:text-3xl">Un comentario. El siguiente paso, por mensaje.</h4><p className="mt-4 text-lg leading-relaxed text-white/70">Las personas interesadas comentan en la publicación y se activa la automatización de ManyChat. Reciben un mensaje privado que las guía al formulario para dejar sus datos y contarnos qué necesitan.</p></div>
+      </div>
+      <div className="border-t border-white/15 pt-8">
+        <p className="text-xs font-bold tracking-wider text-brand">PASO 02 · MEDIR LA AUTOMATIZACIÓN</p>
+        <h4 className="mt-3 font-heading text-2xl font-bold md:text-3xl">Del mensaje al clic: un recorrido que podemos medir.</h4>
+        <p className="mt-4 max-w-4xl text-lg leading-relaxed text-white/70">En esta automatización, ManyChat registra 112 envíos, 107 clics y un 96 % de CTR. Son las métricas de los mensajes y sus enlaces; los contactos que completan el formulario se recogen después en la hoja de seguimiento.</p>
+        <figure className="mt-6"><a href={`${basePath}/casos/welding-automatizacion.png`} target="_blank" rel="noreferrer" aria-label="Ampliar captura de estadísticas de ManyChat" className="block rounded-2xl"><Image src={`${basePath}/casos/welding-automatizacion.png`} alt="Panel de ManyChat: 112 envíos, 107 clics y 96 por ciento de CTR" width={1704} height={666} unoptimized className="h-auto w-full rounded-2xl border border-white/15" /></a><figcaption className="mt-3 text-xs text-white/60">Estadísticas de esta automatización. Pulsa la imagen para ampliarla.</figcaption></figure>
+      </div>
+      <div className="border-t border-white/15 pt-8">
+        <p className="text-xs font-bold tracking-wider text-brand">PASO 03 · ORGANIZAR EL SEGUIMIENTO</p>
+        <h4 className="mt-3 font-heading text-2xl font-bold md:text-3xl">Un Excel a medida, listo para trabajar cada contacto.</h4>
+        <p className="mt-4 max-w-4xl text-lg leading-relaxed text-white/70">También diseñamos y preparamos la hoja para el cliente, adaptada a la información que necesita su negocio. En Welding organizamos los datos del formulario por localidad, tipo de estructura, urgencia y fecha y hora preferidas para la llamada. Así el equipo puede priorizar a quién llamar y preparar cada conversación.</p>
+        <div className="mt-6 flex flex-wrap gap-2">{['Localidad', 'Trabajo solicitado', 'Urgencia', 'Fecha y hora de llamada'].map((label) => <span key={label} className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white/80">{label}</span>)}</div>
+        <figure className="mt-6"><a href={`${basePath}/casos/welding-seguimiento-anonimizado.png`} target="_blank" rel="noreferrer" aria-label="Ampliar hoja de seguimiento con datos personales ocultos" className="block rounded-2xl"><Image src={`${basePath}/casos/welding-seguimiento-anonimizado.png`} alt="Hoja de seguimiento de contactos con nombres y teléfonos ocultos; muestra localidades, trabajos, fechas y urgencia" width={1786} height={881} unoptimized className="h-auto w-full rounded-2xl border border-white/15" /></a><figcaption className="mt-3 text-xs text-white/60">Hoja preparada para Welding Systems. Nombres y teléfonos ocultos por privacidad. Pulsa para ampliar.</figcaption></figure>
+      </div>
+    </div>
   )
 }
 
@@ -109,13 +124,14 @@ export function StorySection({ periodo }: { periodo?: string }) {
                 <span className={`rounded-full px-4 py-2 text-xs font-bold tracking-[.12em] ${act.number === '02' ? 'bg-brand text-ink' : 'bg-white/10 text-white'}`}>ACTO {act.number}</span>
                 <p className="font-heading text-xl font-bold md:text-2xl">{act.number === '01' ? 'Antes · El punto de partida' : act.number === '02' ? 'Después · La nueva identidad' : 'La estrategia · Del interés al contacto'}</p>
               </div>
-              <div className="grid items-start gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
-                <StoryImage src={act.image} title={act.title} />
+              <div className={act.number === '03' ? 'max-w-4xl' : 'grid items-start gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12'}>
+                {act.number !== '03' && <StoryImage src={act.image} title={act.title} />}
                 <div>
                   <h3 id={`welding-act-${act.number}`} className="font-heading text-3xl font-bold tracking-tight xl:text-4xl">{act.title}</h3>
                   <p className="mt-5 text-lg leading-relaxed text-white/70 xl:text-xl">{act.text}</p>
                 </div>
               </div>
+              {act.number === '03' && <AutomationEvidence />}
               {act.number === '02' && <div className="mt-8 border-t border-white/15 pt-7"><p className="mb-5 text-sm font-semibold text-white/75">La misma identidad, en cada publicación.</p><div className="max-w-4xl"><StoryImage src="/casos/welding-contenido.png" title="Portadas con una misma dirección visual" /></div></div>}
             </article>
           ))}
