@@ -1,20 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import { ImageReveal, TiltCard, WordReveal } from '@/components/motion/motion-primitives'
+import { ArrowDown, ArrowUpRight, Code2, MousePointer2, Sparkles } from 'lucide-react'
+import { ImageReveal, WordReveal } from '@/components/motion/motion-primitives'
 import { SectionLabel } from './primitives'
 import { useHydratedReducedMotion } from '@/components/motion/use-hydrated-reduced-motion'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
-
-const HERO_WORK = [
-  { src: '/work/work-01.svg', alt: 'Placeholder vertical para sustituir por un Reel real', label: 'Reel · pendiente', className: 'row-span-2 aspect-[9/16]' },
-  { src: '/work/work-03.svg', alt: 'Placeholder para sustituir por fotografía de producto', label: 'Producto · pendiente', className: 'aspect-[4/3]' },
-  { src: '/work/work-02.svg', alt: 'Placeholder para sustituir por un mockup web', label: 'Web · pendiente', className: 'aspect-[4/3]' },
-]
 
 export function Hero() {
   const reduceMotion = useHydratedReducedMotion()
@@ -35,10 +28,14 @@ export function Hero() {
       <div className="swira-atmosphere absolute inset-0 opacity-80 mix-blend-screen" />
 
       <div className="relative mx-auto grid min-h-dvh max-w-[1600px] items-center gap-14 px-6 pt-32 pb-20 lg:grid-cols-[1.08fr_.92fr] lg:px-10 xl:px-16">
-        <div className="relative z-10">
+        <div className="relative z-10 min-w-0">
           <SectionLabel className="text-white/70">Agencia de marketing digital</SectionLabel>
-          <h1 className="mt-7 max-w-5xl font-heading text-[clamp(2.85rem,6.3vw,7rem)] font-extrabold leading-[.92] tracking-[-.055em] text-balance">
-            <WordReveal text="Que te vean está bien. Que te elijan, mejor." emphasis="mejor" />
+          <h1 className="mt-7 max-w-5xl font-heading text-[clamp(2.85rem,6.3vw,7rem)] font-extrabold leading-[.92] tracking-[-.055em] text-balance max-[360px]:text-[2.5rem]">
+            <span className="block"><WordReveal text="Que te vean está bien." /></span>
+            <span className="flex flex-wrap">
+              <WordReveal text="Que te elijan," className="flex-nowrap" />
+              <WordReveal text="mejor." emphasis="mejor" />
+            </span>
           </h1>
           <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }} className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">
             Estrategia, creatividad y tecnología para convertir atención en negocio.
@@ -49,16 +46,25 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <div className="grid min-h-0 grid-cols-2 grid-rows-2 gap-3 lg:h-[min(72vh,760px)]">
-          {HERO_WORK.map((item, index) => (
-            <ImageReveal key={item.src} delay={index * .12} className={item.className}>
-              <TiltCard className="group relative size-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                <Image src={`${basePath}${item.src}`} alt={item.alt} fill unoptimized loading="eager" sizes={index === 0 ? '(max-width: 1023px) 50vw, 24vw' : '(max-width: 1023px) 50vw, 22vw'} className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                <span className="absolute right-3 bottom-3 rounded-full bg-ink/75 px-3 py-1.5 text-[10px] font-semibold tracking-[.12em] text-white uppercase backdrop-blur-md">{item.label}</span>
-              </TiltCard>
-            </ImageReveal>
-          ))}
-        </div>
+        <ImageReveal delay={0.12} className="relative">
+          <div className="grid grid-cols-2 gap-3 rounded-[2rem] border border-white/25 bg-white/10 p-3 shadow-[0_32px_90px_rgba(0,0,0,.2)] backdrop-blur-xl">
+            <div className="relative col-span-2 flex min-h-72 flex-col overflow-hidden rounded-[1.4rem] bg-[#0c1224] p-6 sm:min-h-88 sm:p-7">
+              <div aria-hidden="true" className="absolute -top-24 -right-16 size-80 rounded-full bg-blue-500/50 blur-3xl" />
+              <div aria-hidden="true" className="absolute -bottom-20 left-10 size-60 rounded-full bg-cyan-400/25 blur-3xl" />
+              <p className="relative text-xs tracking-[.2em] text-white/65 uppercase">Experiencia digital</p>
+              <p className="relative mt-5 max-w-sm font-heading text-4xl font-bold leading-tight sm:text-5xl">Una presencia imposible de ignorar.</p>
+              <MousePointer2 aria-hidden="true" className="relative mt-8 ml-auto size-9 text-brand" />
+            </div>
+            <div className="flex min-h-52 flex-col justify-between rounded-[1.4rem] bg-[#dfff42] p-5 text-ink sm:min-h-56 sm:p-6">
+              <Sparkles aria-hidden="true" className="size-7" />
+              <div className="mt-7"><p className="font-heading text-2xl font-bold sm:text-3xl">Ideas que mueven.</p><p className="mt-2 text-sm">Estrategia para crecer.</p></div>
+            </div>
+            <div className="flex min-h-52 flex-col justify-between rounded-[1.4rem] bg-white p-5 text-ink sm:min-h-56 sm:p-6">
+              <Code2 aria-hidden="true" className="size-7 text-blue-600" />
+              <div className="mt-7"><p className="font-heading text-2xl font-bold sm:text-3xl">Diseño + código</p><p className="mt-2 text-sm text-neutral-600">Todo bajo el mismo techo.</p></div>
+            </div>
+          </div>
+        </ImageReveal>
       </div>
 
       <motion.a href="#marcas" aria-label="Scroll: bajar a las marcas" className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[10px] tracking-[.18em] text-white/60 uppercase" animate={reduceMotion ? undefined : { y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
