@@ -34,7 +34,7 @@ export function WorkGallery() {
         <div className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-3">
           {ITEMS.map((item, i) => (
             <Reveal key={item.label} delay={i * 80} className="mb-4 break-inside-avoid">
-              <figure className="group relative overflow-hidden border border-border">
+              <figure className="group relative overflow-hidden rounded-[var(--swira-card-radius)] border border-border">
                 <Image
                   src={`${basePath}/placeholder.svg?height=${item.h}&width=${item.w}&query=${encodeURIComponent(item.query)}`}
                   alt={`Trabajo de Swira: ${item.label}`}

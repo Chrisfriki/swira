@@ -44,10 +44,10 @@ export function WorkSection() {
 
   return (
     <section ref={sectionRef} id="trabajo" data-theme="light" className="relative isolate overflow-hidden bg-paper py-24 text-ink md:py-32">
-      <div className="px-6 lg:px-10">
-        <SectionLabel>Trabajo seleccionado</SectionLabel>
+      <div className="swira-container"><div className="swira-atmosphere rounded-[2rem] px-7 py-12 text-white md:p-14">
+        <SectionLabel className="text-white/65">Trabajo seleccionado</SectionLabel>
         <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight text-balance"><WordReveal text="Ideas bonitas. Resultados todavía mejores." emphasis="mejores" /></h2>
-      </div>
+      </div></div>
       <div
         ref={emblaRef}
         className="mt-14 cursor-grab overflow-hidden active:cursor-grabbing"
@@ -63,7 +63,7 @@ export function WorkSection() {
       >
         <div className="flex items-start gap-4 pl-6 lg:gap-6 lg:pl-10">
           {WORK.map((item, index) => (
-            <article key={`${item.src}-${index}`} className={`relative min-w-0 shrink-0 overflow-hidden rounded-xl border border-border bg-muted ${item.ratio} ${item.ratio.includes('9/16') ? 'basis-[68vw] sm:basis-[38vw] lg:basis-[24vw]' : 'basis-[86vw] sm:basis-[58vw] lg:basis-[42vw]'}`}>
+            <article key={`${item.src}-${index}`} className={`relative min-w-0 shrink-0 overflow-hidden rounded-[var(--swira-card-radius)] border border-border bg-muted ${item.ratio} ${item.ratio.includes('9/16') ? 'basis-[68vw] sm:basis-[38vw] lg:basis-[24vw]' : 'basis-[86vw] sm:basis-[58vw] lg:basis-[42vw]'}`}>
               <ImageReveal className="absolute inset-0" delay={(index % 3) * .08}>
                 <Image src={`${basePath}${item.src}`} alt={`Proyecto pendiente de ${item.service}`} fill unoptimized sizes="(max-width: 639px) 86vw, (max-width: 1023px) 58vw, 42vw" className="object-cover transition-transform duration-700 hover:scale-[1.03]" />
               </ImageReveal>

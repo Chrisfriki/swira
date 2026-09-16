@@ -31,7 +31,7 @@ export function Team() {
           {TEAM.map((member, i) => (
             <Reveal key={member.role} delay={i * 80} className={i % 2 === 1 ? 'lg:translate-y-14' : ''}>
               <figure className="group">
-                <div className="relative aspect-[3/4] overflow-hidden border border-border">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--swira-card-radius)] border border-border">
                   <Image
                     src={`${basePath}${member.src}`}
                     alt={`Retrato pendiente de sustituir para el rol de ${member.role}`}

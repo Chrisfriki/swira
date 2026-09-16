@@ -11,15 +11,15 @@ const PAINS = [
 export function PainSection() {
   return (
     <section data-theme="light" className="relative isolate z-10 overflow-hidden bg-paper pt-24 md:pt-32">
-      <div className="px-6 lg:px-10">
+      <div className="swira-container">
         <SectionLabel>El punto de partida</SectionLabel>
         <h2 className="mt-6 max-w-6xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight text-ink">
           <WordReveal text="¿Te está pasando esto?" emphasis="esto" />
         </h2>
       </div>
-      <div className="mt-14 flex flex-col overflow-hidden md:h-[68vh] md:min-h-[560px] md:flex-row">
+      <div className="swira-container mt-14 mb-16 flex flex-col gap-4 overflow-hidden md:h-[68vh] md:min-h-[560px] md:flex-row">
         {PAINS.map((pain, index) => (
-          <ImageReveal key={pain.text} delay={index * .08} className="group relative min-h-[360px] flex-1 overflow-hidden transition-[flex] duration-700 ease-[cubic-bezier(.16,1,.3,1)] hover:flex-[1.7] md:min-h-0">
+          <ImageReveal key={pain.text} delay={index * .08} className="group relative min-h-[360px] flex-1 overflow-hidden rounded-[var(--swira-card-radius)] transition-[flex] duration-700 ease-[cubic-bezier(.16,1,.3,1)] hover:flex-[1.7] md:min-h-0">
             <article className="absolute inset-0">
               <div aria-hidden="true" className="absolute inset-0 scale-100 grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" style={{ background: pain.background }} />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />

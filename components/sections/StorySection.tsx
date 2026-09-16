@@ -34,7 +34,7 @@ const ACTS = [
 
 function StoryImage({ src, title, fillContainer = false }: { src: string; title: string; fillContainer?: boolean }) {
   return (
-    <div className={fillContainer ? 'relative size-full overflow-hidden border border-white/10 bg-black' : 'relative aspect-[4/3] overflow-hidden border border-white/10 bg-black'}>
+    <div className={fillContainer ? 'relative size-full overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-black' : 'relative aspect-[4/3] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-black'}>
       <Image
         src={`${basePath}${src}`}
         alt={`Imagen provisional del caso Welding Systems: ${title}`}
@@ -152,7 +152,7 @@ export function StorySection({ periodo }: { periodo?: string }) {
               <ol aria-label="Progreso de la historia" className="sticky top-[calc(var(--header-h)+32px)] flex h-[calc(100vh-var(--header-h)-64px)] flex-col items-center justify-center gap-5">
                 {[0, 1, 2, 3].map((index) => <li key={index} aria-current={active === index ? 'step' : undefined} className={`size-2.5 rounded-full border transition-colors duration-300 ${active === index ? 'border-brand bg-brand' : 'border-white/30 bg-transparent'}`}><span className="sr-only">Acto {index + 1}</span></li>)}
               </ol>
-              <div className="sticky top-[calc(var(--header-h)+32px)] h-[calc(100vh-var(--header-h)-64px)] min-h-[560px] overflow-hidden border border-white/10 bg-black">
+              <div className="sticky top-[calc(var(--header-h)+32px)] h-[calc(100vh-var(--header-h)-64px)] min-h-[560px] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-black">
                 <AnimatePresence mode="wait">
                   {active < 3 ? (
                     <motion.div key={ACTS[active].image} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="absolute inset-0">

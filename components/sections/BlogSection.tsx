@@ -7,7 +7,7 @@ export function BlogSection() {
   const posts = getAllPostSummaries().slice(0, 3)
 
   return (
-    <section id="blog" data-theme="dark" className="bg-deep-900 px-6 py-24 text-white md:py-32 lg:px-10">
+    <section id="blog" data-theme="dark" className="swira-atmosphere px-6 py-24 text-white md:py-32 lg:px-10">
       <SectionLabel className="text-white/60">Ideas útiles</SectionLabel>
       <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <h2 className="max-w-5xl font-heading text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[.9] tracking-tight">

@@ -16,7 +16,7 @@ const EXAMPLES = [
 function Comparison({ before, after, label }: (typeof EXAMPLES)[number]) {
   const [value, setValue] = useState(50)
   return (
-    <figure className="relative aspect-[16/9] overflow-hidden rounded-xl border border-white/10 bg-ink">
+    <figure className="relative aspect-[16/9] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 bg-ink">
       <Image src={`${basePath}${before}`} alt={`Antes: ${label}`} fill unoptimized sizes="(max-width: 1023px) 92vw, 72vw" className="object-cover grayscale" />
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - value}% 0 0)` }}><Image src={`${basePath}${after}`} alt={`Después: ${label}`} fill unoptimized sizes="(max-width: 1023px) 92vw, 72vw" className="object-cover" /></div>
       <div className="pointer-events-none absolute inset-y-0 w-px bg-brand" style={{ left: `${value}%` }}><span className="absolute top-1/2 left-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand text-ink"><GripVertical className="size-5" aria-hidden="true" /></span></div>

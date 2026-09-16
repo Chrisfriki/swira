@@ -3,7 +3,7 @@ const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT
 export function ContactForm() {
   // TODO(vercel): sustituir Formspree por una Server Action con validación y protección anti-spam al migrar a runtime de Vercel.
   return (
-    <form action={formspreeEndpoint} method="POST" className="border border-border bg-paper p-7 md:p-10">
+    <form action={formspreeEndpoint} method="POST" className="swira-panel bg-white p-7 md:p-10">
       <h2 className="font-heading text-3xl font-bold">Cuéntanos el reto</h2>
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium">Nombre<input name="name" required className="border-b border-border bg-transparent px-1 py-3 outline-none focus:border-brand" /></label>

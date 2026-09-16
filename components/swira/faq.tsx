@@ -31,7 +31,7 @@ const FAQS = [
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="border-b border-border first:border-t">
+    <div className="swira-panel mb-3 bg-white px-6 md:px-8">
       <h3>
         <button
           type="button"

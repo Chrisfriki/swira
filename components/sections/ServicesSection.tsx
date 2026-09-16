@@ -35,7 +35,7 @@ export function ServicesSection() {
       <div className="px-6 pt-24 md:pt-32 lg:px-10"><SectionLabel className="text-white/60">Lo que hacemos</SectionLabel></div>
       <div className="mx-auto grid w-full max-w-[1600px] gap-12 px-6 pb-24 md:pb-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:px-10">
         <div className="hidden lg:block">
-          <div className="sticky top-28 h-[calc(100vh-8.5rem)] overflow-hidden rounded-xl border border-white/10">
+          <div className="sticky top-28 h-[calc(100vh-8.5rem)] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10">
             <AnimatePresence mode="wait">
               <motion.div key={PILLARS[active].image} initial={{ opacity: 0, scale: 1.04 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .55 }} className="absolute inset-0">
                 <Image src={`${basePath}${PILLARS[active].image}`} alt={`Imagen pendiente del servicio ${PILLARS[active].title}`} fill unoptimized sizes="50vw" className="object-cover" />
@@ -47,7 +47,7 @@ export function ServicesSection() {
         <div>
           {PILLARS.map((pillar, index) => (
             <article key={pillar.number} ref={(node) => { refs.current[index] = node }} data-index={index} className="flex min-h-0 flex-col justify-center border-b border-white/10 py-16 first:pt-14 lg:min-h-[76vh] lg:py-24">
-              <div className="relative mb-8 aspect-[4/3] overflow-hidden rounded-xl border border-white/10 lg:hidden">
+              <div className="relative mb-8 aspect-[4/3] overflow-hidden rounded-[var(--swira-card-radius)] border border-white/10 lg:hidden">
                 <Image src={`${basePath}${pillar.image}`} alt={`Imagen pendiente del servicio ${pillar.title}`} fill unoptimized sizes="100vw" className="object-cover" />
               </div>
               <p className="font-heading text-[clamp(4rem,9vw,9rem)] font-extrabold leading-none text-brand">{pillar.number}</p>
