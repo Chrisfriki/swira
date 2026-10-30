@@ -1,55 +1,90 @@
+'use client'
+
+import { useState, type CSSProperties, type PointerEvent } from 'react'
 import Image from 'next/image'
 import { Reveal } from './reveal'
 import { WordReveal } from '@/components/motion/motion-primitives'
+import { TEAM } from '@/lib/content/team'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
-const TEAM = [
-  { name: 'Nombre por definir', role: 'Estrategia y dirección', src: '/team/team-01.svg' },
-  { name: 'Nombre por definir', role: 'Desarrollo y producto', src: '/team/team-02.svg' },
-  { name: 'Nombre por definir', role: 'Contenido y fotografía', src: '/team/team-03.svg' },
-  { name: 'Nombre por definir', role: 'Captación y campañas', src: '/team/team-04.svg' },
-]
-
 export function Team() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const [focusedId, setFocusedId] = useState<string | null>(null)
+  const activeId = hoveredId ?? focusedId
+
+  const interactions = (id: string) => ({
+    onPointerEnter: (event: PointerEvent<HTMLButtonElement>) => {
+      if (event.pointerType !== 'touch') setHoveredId(id)
+    },
+    onPointerLeave: () => setHoveredId(null),
+    onFocus: () => setFocusedId(id),
+    onBlur: () => setFocusedId(null),
+    onClick: () => setFocusedId(id),
+  })
+
   return (
-    <section id="nosotros" data-theme="light" className="bg-paper">
+    <section id="nosotros" aria-labelledby="team-title" data-theme="light" className="bg-paper">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
-        <Reveal as="h2">
-          <span className="font-heading text-4xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-6xl">
+        <Reveal>
+          <h2 id="team-title" className="font-heading text-4xl font-extrabold leading-[0.95] tracking-tight text-balance md:text-6xl">
             <WordReveal text="Detrás de esto hay personas." emphasis="personas" />
-          </span>
+          </h2>
         </Reveal>
         <Reveal delay={80}>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Somos un equipo pequeño y sin capas intermedias. Hablas con quien
-            hace el trabajo, no con un gestor de cuentas.
+            De la estrategia a la producción, trabajamos juntos para dar forma
+            a cada proyecto y acompañar a cada cliente.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-4 lg:gap-6">
-          {TEAM.map((member, i) => (
-            <Reveal key={member.role} delay={i * 80} className={i % 2 === 1 ? 'lg:translate-y-14' : ''}>
-              <figure className="group">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--swira-card-radius)] border border-border">
-                  <Image
-                    src={`${basePath}${member.src}`}
-                    alt={`Retrato pendiente de sustituir para el rol de ${member.role}`}
-                    fill
-                    unoptimized
-                    sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-cover grayscale transition-all duration-[400ms] group-hover:grayscale-0"
-                  />
-                </div>
-                <figcaption className="mt-4">
-                  <p className="font-heading text-lg font-bold tracking-tight text-foreground">
-                    {member.name}
-                  </p>
-                  <p className="text-sm text-muted-foreground">{member.role}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
+        <div className="team-panel mt-14" data-has-active={activeId !== null}>
+          <div className="team-mosaic" role="group" aria-label="El equipo de Swira">
+            {TEAM.map((member, index) => (
+              <button
+                key={member.id}
+                type="button"
+                className="team-portrait"
+                data-member-id={member.id}
+                data-active={activeId === member.id}
+                aria-label={`Destacar a ${member.name}${member.role ? `, ${member.role}` : ''}`}
+                aria-pressed={activeId === member.id}
+                style={{ '--team-accent': member.color } as CSSProperties}
+                {...interactions(member.id)}
+              >
+                {member.image ? (
+                  <Image src={`${basePath}${member.image}`} alt="" fill unoptimized sizes="(min-width: 1024px) 180px, 30vw" className="team-portrait-media object-cover" />
+                ) : (
+                  <span className="team-portrait-media team-monogram" aria-hidden="true">
+                    <span className="team-monogram-number">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="team-monogram-initials">{member.initials}</span>
+                    <span className="team-monogram-name">{member.name}</span>
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          <ul className="team-roster" aria-label="Personas y roles">
+            {TEAM.map((member) => (
+              <li key={member.id}>
+                <button
+                  type="button"
+                  className="team-person"
+                  data-member-id={member.id}
+                  data-active={activeId === member.id}
+                  aria-pressed={activeId === member.id}
+                  {...interactions(member.id)}
+                >
+                  <span className="team-person-dot" aria-hidden="true" />
+                  <span>
+                    <span className="team-person-name">{member.name}</span>
+                    {member.role && <span className="team-person-role">{member.role}</span>}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

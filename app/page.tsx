@@ -2,7 +2,6 @@ import { SiteHeader } from '@/components/swira/site-header'
 import { Hero } from '@/components/swira/hero'
 import { ReelsSection } from '@/components/sections/ReelsSection'
 import { ClientLogos } from '@/components/swira/client-logos'
-import { Results } from '@/components/swira/results'
 import { FinalCta } from '@/components/swira/final-cta'
 import { SiteFooter } from '@/components/swira/site-footer'
 import { ServicesSection } from '@/components/sections/ServicesSection'
@@ -16,9 +15,9 @@ import { StorySection } from '@/components/sections/StorySection'
 
 export default function Page() {
   return (
-    <><SiteHeader /><main><Hero /><ReelsSection /><ClientLogos /><PainSection /><StorySection /><MidCta />
+    <><SiteHeader /><main><Hero /><ClientLogos /><ReelsSection /><PainSection /><StorySection /><MidCta />
       <ServicesSection />
       <WorkSection />
-      <Results /><TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
+      <TeamSection /><BlogSection /><FaqSection /><FinalCta /></main><SiteFooter /></>
   )
 }
