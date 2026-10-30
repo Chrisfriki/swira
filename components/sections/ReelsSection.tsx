@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, Bookmark, Heart, Camera, MessageCircle, Music2, Send } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Camera, ExternalLink, Pause, Play, Volume2, VolumeX } from 'lucide-react'
 import { REELS, type Reel } from '@/lib/content/reels'
 import { SectionLabel } from '@/components/swira/primitives'
 
@@ -10,36 +10,78 @@ const assetUrl = (path: string) => path.startsWith('/') ? `${basePath}${path}` :
 
 function ReelVideo({ reel }: { reel: Reel }) {
   const ref = useRef<HTMLVideoElement>(null)
+  const pausedByUser = useRef(false)
   const [failed, setFailed] = useState(false)
+  const [muted, setMuted] = useState(true)
+  const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
     const video = ref.current
     if (!video) return
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) video.pause()
+      else if (!document.hidden && !pausedByUser.current) void video.play().catch(() => setPlaying(false))
     }, { threshold: 0.3 })
-    const pauseWhenHidden = () => { if (document.hidden) video.pause() }
+    const handleVisibility = () => {
+      if (document.hidden) video.pause()
+      else if (!pausedByUser.current) void video.play().catch(() => setPlaying(false))
+    }
     observer.observe(video)
-    document.addEventListener('visibilitychange', pauseWhenHidden)
+    document.addEventListener('visibilitychange', handleVisibility)
     return () => {
       observer.disconnect()
-      document.removeEventListener('visibilitychange', pauseWhenHidden)
+      document.removeEventListener('visibilitychange', handleVisibility)
     }
   }, [])
 
-  if (failed) return <p role="status" className="absolute inset-x-6 top-1/2 text-center text-sm">No se ha podido cargar el vídeo. Prueba de nuevo más tarde.</p>
+  const togglePlayback = () => {
+    const video = ref.current
+    if (!video) return
+    if (video.paused) {
+      pausedByUser.current = false
+      void video.play().catch(() => setPlaying(false))
+    } else {
+      pausedByUser.current = true
+      video.pause()
+    }
+  }
 
-  return <video ref={ref} src={assetUrl(reel.src!)} poster={reel.poster ? assetUrl(reel.poster) : undefined} controls playsInline muted preload="none" aria-label={reel.title} onError={() => setFailed(true)} className="absolute inset-0 size-full object-cover">
-    {reel.captions ? <track kind="captions" src={assetUrl(reel.captions)} srcLang={reel.captionLanguage ?? 'es'} label={reel.captionLabel ?? 'Español'} default /> : null}
-    Tu navegador no permite reproducir este vídeo.
-  </video>
+  const toggleSound = () => {
+    const video = ref.current
+    if (!video) return
+    video.muted = !video.muted
+    setMuted(video.muted)
+  }
+
+  return <>
+    {!failed && <video
+      ref={ref}
+      src={assetUrl(reel.src)}
+      poster={assetUrl(reel.poster)}
+      autoPlay loop playsInline muted preload="metadata"
+      aria-label={`Reel de ${reel.title}`}
+      onPlay={() => setPlaying(true)}
+      onPause={() => setPlaying(false)}
+      onError={() => setFailed(true)}
+      className="absolute inset-0 size-full object-cover"
+    />}
+    {failed && <p role="status" className="absolute inset-x-6 top-1/2 text-center text-sm">No se ha podido cargar el vídeo. Puedes verlo en Instagram.</p>}
+    {!failed && <>
+      <button type="button" onClick={toggleSound} aria-label={muted ? `Activar sonido de ${reel.title}` : `Desactivar sonido de ${reel.title}`} aria-pressed={!muted} className="reel-control absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-2 text-[11px] font-semibold">
+        {muted ? <VolumeX className="size-4" aria-hidden="true" /> : <Volume2 className="size-4" aria-hidden="true" />}
+        <span>{muted ? 'Activar sonido' : 'Silenciar'}</span>
+      </button>
+      <button type="button" onClick={togglePlayback} aria-label={playing ? `Pausar ${reel.title}` : `Reproducir ${reel.title}`} className="reel-control absolute right-4 bottom-28 z-10 flex size-10 items-center justify-center">
+        {playing ? <Pause className="size-4 fill-current" aria-hidden="true" /> : <Play className="size-4 fill-current" aria-hidden="true" />}
+      </button>
+    </>}
+  </>
 }
 
 export function ReelsSection() {
   const [active, setActive] = useState(0)
   const touchStart = useRef<number | null>(null)
   const select = (direction: number) => setActive((index) => (index + direction + REELS.length) % REELS.length)
-  const previewOnly = REELS.every((reel) => !reel.src)
 
   return (
     <section id="reels" aria-labelledby="reels-title" data-theme="light" className="reels-section overflow-hidden py-24 text-ink md:py-32">
@@ -51,7 +93,7 @@ export function ReelsSection() {
       <div role="region" aria-roledescription="carrusel" aria-label="Reels de Swira" className="reels-stage relative mx-auto mt-12 max-w-5xl touch-pan-y"
         onTouchStart={(event) => { touchStart.current = event.touches[0].clientX }}
         onTouchEnd={(event) => {
-          if (touchStart.current === null || (event.target as HTMLElement).closest('video')) return
+          if (touchStart.current === null) return
           const distance = event.changedTouches[0].clientX - touchStart.current
           if (Math.abs(distance) > 45) select(distance < 0 ? 1 : -1)
           touchStart.current = null
@@ -62,19 +104,17 @@ export function ReelsSection() {
           const position = offset === 0 ? 'center' : offset === 1 ? 'right' : 'left'
           const selected = index === active
           return (
-            <article key={reel.id} aria-label={`${index + 1} de ${REELS.length}: ${reel.title}`} aria-roledescription="diapositiva" className={`reel-card reel-card--${position} reel-art--${index} absolute overflow-hidden text-white`}>
-              <div className="reel-art absolute inset-0" aria-hidden="true"><span className="reel-orbit" /><span className="reel-orbit reel-orbit--small" /></div>
-              {selected && reel.src ? <ReelVideo reel={reel} /> : null}
-              <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-deep-900/60 to-transparent p-5">
-                <span className="flex items-center gap-2 text-sm font-semibold">{reel.platform === 'Instagram' ? <Camera className="size-5" aria-hidden="true" /> : <Music2 className="size-5" aria-hidden="true" />}{reel.platform === 'Instagram' ? 'Reels' : 'TikTok'}</span>
-                {!reel.src && <span className="rounded-full border border-white/30 bg-deep-900/40 px-2.5 py-1 text-[9px] tracking-wider uppercase">Vista previa</span>}
+            <article key={reel.id} aria-label={`${index + 1} de ${REELS.length}: ${reel.title}`} aria-roledescription="diapositiva" className={`reel-card reel-card--${position} absolute overflow-hidden text-white`}>
+              <div className="reel-art absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url("${assetUrl(reel.poster)}")` }} aria-hidden="true" />
+              {selected && <ReelVideo reel={reel} />}
+              <div className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-deep-900/60 to-transparent p-5">
+                <span className="flex items-center gap-2 text-sm font-semibold"><Camera className="size-5" aria-hidden="true" />Reels</span>
               </div>
-              {!reel.src && <div className="pointer-events-none absolute inset-0 flex flex-col justify-center pl-6 pr-14 pb-10"><span className="mb-5 text-[10px] tracking-[.2em] uppercase text-white/75">{reel.category}</span><p className="max-w-56 font-heading text-[clamp(1.65rem,3.4vw,2.75rem)] font-extrabold leading-[.98] tracking-tight">{reel.title}</p></div>}
-              <div aria-hidden="true" className="pointer-events-none absolute right-4 bottom-32 flex flex-col gap-5"><Heart className="size-6" /><MessageCircle className="size-6" /><Send className="size-6" /><Bookmark className="size-6" /></div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep-900/90 to-transparent px-5 pt-16 pb-12">
-                <p className="flex items-center gap-2 text-sm font-bold"><span className="flex size-7 items-center justify-center rounded-full bg-white text-xs text-ink">s<span className="text-brand">.</span></span>swira</p>
-                <p className="mt-2 max-w-[85%] text-xs text-white/80">{reel.src ? reel.title : 'Un adelanto del próximo contenido.'}</p>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep-900/90 to-transparent px-5 pt-20 pb-20">
+                <p className="text-[10px] font-semibold tracking-[.16em] text-white/75 uppercase">{reel.category}</p>
+                <p className="mt-1 font-heading text-xl font-bold">{reel.title}</p>
               </div>
+              {selected && <a href={reel.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label={`Ver reel de ${reel.title} en Instagram (se abre en una pestaña nueva)`} className="reel-control absolute bottom-5 left-5 z-10 flex items-center gap-1.5 px-3 py-2 text-xs font-semibold">Ver en Instagram <ExternalLink className="size-3.5" aria-hidden="true" /></a>}
               {!selected && <button type="button" onClick={() => setActive(index)} aria-label={`Ver ${reel.title}`} className="absolute inset-0 size-full rounded-[inherit] focus-visible:outline-offset-[-6px]" />}
             </article>
           )
@@ -85,7 +125,6 @@ export function ReelsSection() {
         <p aria-live="polite" aria-atomic="true" className="min-w-16 text-center text-sm tabular-nums"><span className="sr-only">Reel </span>{String(active + 1).padStart(2, '0')} <span className="text-muted-foreground">/ {String(REELS.length).padStart(2, '0')}</span></p>
         <button type="button" onClick={() => select(1)} aria-label="Reel siguiente" className="reel-arrow"><ArrowRight className="size-5" aria-hidden="true" /></button>
       </div>
-      {previewOnly && <p className="mt-6 px-6 text-center text-xs text-muted-foreground">Vista previa del formato · pronto, nuestros vídeos aquí.</p>}
     </section>
   )
 }

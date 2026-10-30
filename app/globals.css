@@ -281,10 +281,9 @@
 .reel-card--right { z-index: 2; transform: translateX(18%) translateY(30px) scale(.86) rotate(7deg); filter: blur(1.5px); opacity: .6; }
 .reel-card:focus-within { filter: none; opacity: 1; }
 .reel-art { background: radial-gradient(ellipse at 100% 10%, #2679ce, transparent 60%), #102b50; }
-.reel-art--1 .reel-art { background: radial-gradient(ellipse at 0% 15%, #328980, transparent 65%), #0a2433; }
-.reel-art--2 .reel-art { background: radial-gradient(ellipse at 90% 20%, #677cdc, transparent 60%), #1a254e; }
-.reel-orbit { position: absolute; width: 135%; aspect-ratio: 1; border: 1px solid rgb(255 255 255 / 22%); border-radius: 50%; left: 15%; top: 17%; box-shadow: 0 0 0 24px rgb(255 255 255 / 3%), 0 0 0 48px rgb(255 255 255 / 3%); }
-.reel-orbit--small { width: 48%; left: -20%; top: 68%; background: #00ce63; border: none; opacity: .7; }
+.reel-control { border: 1px solid rgb(255 255 255 / 30%); border-radius: 999px; background: rgb(10 22 40 / 65%); color: white; backdrop-filter: blur(12px); transition: background 180ms, transform 180ms; }
+.reel-control:hover { background: rgb(10 22 40 / 90%); transform: translateY(-1px); }
+.reel-control:focus-visible { outline: 2px solid white; outline-offset: 2px; }
 .reel-arrow { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid var(--border); border-radius: 50%; background: white; transition: background 180ms, transform 180ms; }
 .reel-arrow:hover { background: #dfff42; transform: translateY(-2px); }
 @media (prefers-reduced-motion: reduce) {
